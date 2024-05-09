@@ -11,14 +11,17 @@ class NetworkManager {
     static let shared = NetworkManager()
     private let baseURL = "https://newsapi.org/v2/everything?q="
     private let apiKey = "df0425863c604827a5f5ef4eef003db2"
+    private let apiKey2 = "413e3cb8905240bfa14bc5de86c216ca"
     let cache = NSCache<NSString, UIImage>()
     
     private init () {}
     
     
     func getNews(for query: String, page: Int, completed: @escaping(Result<NewsResponse, ACError>) -> Void) {
-        let endPoint = baseURL + "\(query)&page=\(page)&apiKey=\(apiKey)"
+        let endPoint = baseURL + "\(query)&page=\(page)&apiKey=\(apiKey2)"
+        #if DEBUG
         print(endPoint)
+        #endif
         guard let url = URL(string: endPoint) else {
             completed(.failure(.invalidQuery))
             return
@@ -48,5 +51,10 @@ class NetworkManager {
             }
         }
         task.resume()
+    }
+    
+    func formatDate(for date: String) -> String {
+        guard let formattedDate = date.convertToDate() else { return ""}
+        return formattedDate.convertToMonthYearDayFormat()
     }
 }

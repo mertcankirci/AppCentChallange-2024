@@ -34,7 +34,7 @@ class ACNewsImageView: UIImageView {
         
         if let image = cache.object(forKey: cacheKey) {
             self.image = image
-            return //MARK: BURAYA BAK IMAGE GELMIYORSA RETURNU KALDIRIP DENE
+            return
         }
         
         guard let url = URL(string: urlString) else { return }

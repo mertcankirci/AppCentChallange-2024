@@ -144,7 +144,9 @@ extension HomeVC: UICollectionViewDelegate {
         
         if offSetY > contentHeight - height {
             guard let query = query else { return }
-            page += 1
+            if lastQuery != query {
+                page += 1
+            }
             getNews(query: query)
         }
     }
@@ -176,5 +178,5 @@ extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate {
         navigationItem.searchController?.isActive = false
         
     }
-    
 }
+

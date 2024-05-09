@@ -45,7 +45,6 @@ class ACCustomLabelItemView: UIView {
             label.leadingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 4),
             label.centerYAnchor.constraint(equalTo: centerYAnchor),
             label.trailingAnchor.constraint(equalTo: trailingAnchor),
-            
         ])
         
         NSLayoutConstraint.activate([

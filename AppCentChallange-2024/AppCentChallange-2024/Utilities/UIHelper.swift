@@ -20,4 +20,11 @@ struct UIHelper {
         
         return flowLayout
     }
+
+    static func calculateCustomItemWidthForThree(in view: UIView, viewPadding viewPad: CGFloat, itemPadding itemPad: CGFloat) -> CGFloat {
+        let availableWidth = view.bounds.width - ( 2 * viewPad)
+        let itemWidth = (availableWidth - ( 2 * itemPad )) / 3
+        
+        return itemWidth
+    }
 }

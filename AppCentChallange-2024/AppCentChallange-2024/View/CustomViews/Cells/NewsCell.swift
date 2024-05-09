@@ -33,7 +33,7 @@ class NewsCell: UICollectionViewCell {
         self.descriptionLabel.text = article.description
         newsImageView.downloadImage(from: article.urlToImage ?? "")
         sourceView.label.text = article.source?.name ?? "Unknown"
-        dateView.label.text = formatDate(for: article.publishedAt ?? "Unkown")
+        dateView.label.text = NetworkManager.shared.formatDate(for: article.publishedAt ?? "Unkown")
     }
     
     func configure() {
@@ -42,7 +42,7 @@ class NewsCell: UICollectionViewCell {
         translatesAutoresizingMaskIntoConstraints = false
         let width = bounds.width
         sourceView = ACCustomLabelItemView(symbolName: "mappin", labelText: article?.source?.name ?? "Unkown", color: .systemPink, textAlignment: .left)
-        dateView = ACCustomLabelItemView(symbolName: "calendar", labelText: formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .left)
+        dateView = ACCustomLabelItemView(symbolName: "calendar", labelText: NetworkManager.shared.formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .left)
         titleLabel.numberOfLines = 2
         descriptionLabel.numberOfLines = 4
         
@@ -77,10 +77,5 @@ class NewsCell: UICollectionViewCell {
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
             
         ])
-    }
-    
-    private func formatDate(for date: String) -> String {
-        guard let formattedDate = date.convertToDate() else { return ""}
-        return formattedDate.convertToMonthYearDayFormat()
     }
 }
