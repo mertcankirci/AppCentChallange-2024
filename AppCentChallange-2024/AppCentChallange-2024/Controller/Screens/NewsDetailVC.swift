@@ -8,22 +8,22 @@
 import UIKit
 
 class NewsDetailVC: UIViewController {
+    
+    var article: Article!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        configureViewController()
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func configureViewController() {
+        view.backgroundColor = .secondarySystemBackground
+        
+        let backButton = UIBarButtonItem()
+        backButton.title = "Home"
+        backButton.tintColor = .systemPink
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+        
     }
-    */
-
 }

@@ -23,11 +23,9 @@ class ACNewsImageView: UIImageView {
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius = 8
-        layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        layer.cornerRadius = 12
         clipsToBounds = true
         image = placeHolderImage
-        
     }
     
     func downloadImage(from urlString: String) {
@@ -56,5 +54,4 @@ class ACNewsImageView: UIImageView {
         }
         task.resume()
     }
-    
 }

@@ -186,11 +186,11 @@
 		545CEFFC2BEBAB0700F4EF46 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				545F716D2BED37D500ED93DD /* ItemViews */,
 				54F9880F2BEC19650025C04C /* Buttons */,
 				545CF01D2BEBE88200F4EF46 /* Labels */,
 				545CF01A2BEBE65C00F4EF46 /* ImageViews */,
 				545CF0052BEBAF8D00F4EF46 /* Cells */,
-				54F988142BEC45690025C04C /* ACCustomLabelItemView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -238,6 +238,14 @@
 				545CF0242BEBE91D00F4EF46 /* ACBodyLabel.swift */,
 			);
 			path = Labels;
+			sourceTree = "<group>";
+		};
+		545F716D2BED37D500ED93DD /* ItemViews */ = {
+			isa = PBXGroup;
+			children = (
+				54F988142BEC45690025C04C /* ACCustomLabelItemView.swift */,
+			);
+			path = ItemViews;
 			sourceTree = "<group>";
 		};
 		54F9880F2BEC19650025C04C /* Buttons */ = {
@@ -495,6 +503,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -522,6 +531,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

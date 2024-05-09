@@ -12,7 +12,7 @@ class NewsCell: UICollectionViewCell {
     static let reuseId = "NewsCell"
     var article: Article? = nil
     var newsImageView = ACNewsImageView(frame: .zero)
-    var titleLabel = ACTitleLabel(textAlignment: .left, fontSize: 14) //Might need to adjust
+    var titleLabel = ACTitleLabel(textAlignment: .left, fontSize: 18) //Might need to adjust
     var descriptionLabel = ACSecondaryBodyLabel(textAlignment: .left)
     var sourceView: ACCustomLabelItemView!
     var dateView: ACCustomLabelItemView!
@@ -38,7 +38,7 @@ class NewsCell: UICollectionViewCell {
     
     func configure() {
         backgroundColor = .systemBackground
-        layer.cornerRadius = 8
+        layer.cornerRadius = 16
         translatesAutoresizingMaskIntoConstraints = false
         let width = bounds.width
         sourceView = ACCustomLabelItemView(symbolName: "mappin", labelText: article?.source?.name ?? "Unkown", color: .systemPink, textAlignment: .left)
@@ -53,9 +53,10 @@ class NewsCell: UICollectionViewCell {
         addSubview(descriptionLabel)
         
         NSLayoutConstraint.activate([
-            newsImageView.topAnchor.constraint(equalTo: topAnchor),
-            newsImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            newsImageView.widthAnchor.constraint(equalToConstant: width),
+            newsImageView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
+            newsImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
+//            newsImageView.widthAnchor.constraint(equalToConstant: width - 4),
+            newsImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
             newsImageView.heightAnchor.constraint(equalToConstant: width * 0.45),
             
             sourceView.topAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: padding),
@@ -73,7 +74,8 @@ class NewsCell: UICollectionViewCell {
             descriptionLabel.topAnchor.constraint(equalTo: dateView.bottomAnchor, constant: padding / 2),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding),
             descriptionLabel.trailingAnchor.constraint(equalTo: dateView.trailingAnchor),
-            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding)
+            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
+            
         ])
     }
     
