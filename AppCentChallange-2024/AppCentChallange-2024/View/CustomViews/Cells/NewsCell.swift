@@ -27,6 +27,7 @@ class NewsCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
+        configureLayout()
     }
     
     required init?(coder: NSCoder) {
@@ -46,7 +47,6 @@ class NewsCell: UICollectionViewCell {
         backgroundColor = .systemBackground
         layer.cornerRadius = 16
         translatesAutoresizingMaskIntoConstraints = false
-        let width = bounds.width
         
         sourceView = ACCustomLabelItemView(symbolName: "mappin", labelText: article?.source?.name ?? "Unkown", color: .systemPink, textAlignment: .left)
         dateView = ACCustomLabelItemView(symbolName: "calendar", labelText: NetworkManager.shared.formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .left)
@@ -66,6 +66,12 @@ class NewsCell: UICollectionViewCell {
         addSubview(titleLabel)
         addSubview(descriptionLabel)
         addSubview(minusButton)
+        
+        minusButton.isHidden = true
+    }
+    
+    func configureLayout() {
+        let width = bounds.width
         
         NSLayoutConstraint.activate([
             newsImageView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
@@ -96,8 +102,6 @@ class NewsCell: UICollectionViewCell {
             minusButton.heightAnchor.constraint(equalToConstant: 20)
             
         ])
-        
-        minusButton.isHidden = true
     }
     
     @objc func minusButtonTapped() {

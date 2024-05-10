@@ -33,6 +33,7 @@ class NewsDetailVC: UIViewController {
         checkIsSaved()
         configureViewController()
         configureUIElements()
+        configureLayout()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -60,11 +61,6 @@ class NewsDetailVC: UIViewController {
     }
     
     func configureUIElements() {
-        
-        let width = view.bounds.width
-        let availableWidth = (width - (3 * padding)) / 3
-        let height = view.bounds.height
-        
         newsImageView.downloadImage(from: article.urlToImage ?? "")
         newsImageView.layer.cornerRadius = 12
         titleLabel.text = article.title
@@ -86,6 +82,12 @@ class NewsDetailVC: UIViewController {
         view.addSubview(sourceView)
         view.addSubview(authorView)
         view.addSubview(safariButton)
+    }
+    
+    func configureLayout() {
+        let width = view.bounds.width
+        let availableWidth = (width - (3 * padding)) / 3
+        let height = view.bounds.height
         
         NSLayoutConstraint.activate([
             newsImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: padding),
@@ -162,7 +164,7 @@ class NewsDetailVC: UIViewController {
     @objc func shareButtonTapped() {
         let shareText = """
         Look at this article !
-        \(String(describing: titleLabel.text))
+        \(titleLabel.text ?? "Unknown")
         """
         let shareImage = newsImageView.image
         let shareUrl = String(describing: article.url ?? "CorruptedURL")

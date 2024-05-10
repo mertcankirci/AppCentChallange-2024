@@ -23,6 +23,7 @@ class HomeVC: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Article>!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
@@ -32,9 +33,6 @@ class HomeVC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        if news.isEmpty {
-//            showEmptyStateView(with: "Please search a keyword for news", in: self.view)
-//        }
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 
@@ -83,7 +81,7 @@ class HomeVC: UIViewController {
     func configureSearchController() {
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
-        searchController.searchBar.delegate = self
+        searchController.delegate = self
         searchController.searchBar.placeholder = "Search..."
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.searchTextField.leftView?.tintColor = .systemPink
@@ -128,6 +126,7 @@ class HomeVC: UIViewController {
             presentACAlertOnMainThread(title: "You don't have any news yet", message: "Please search", buttonTitle: "Ok")
             collectionView.scrollsToTop = true
         } else {
+            self.title = "Appcent News App"
             self.news.removeAll()
             updateData(on: self.news)
             collectionView.scrollsToTop = true
@@ -161,8 +160,7 @@ extension HomeVC: UICollectionViewDelegate {
     }
 }
 
-extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate {
-    
+extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
     func updateSearchResults(for searchController: UISearchController) { }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -175,8 +173,12 @@ extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate {
         self.query = searchBar.text
         getNews(query: query)
         searchBar.resignFirstResponder()
+        self.title = "Searching for: \(query)"
         navigationItem.searchController?.isActive = false
-        
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        self.title = "Appcent News App"
     }
 }
 
