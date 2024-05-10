@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NewsDetailDissapearDelegate: AnyObject {
+    func detailVcWillDissapear()
+}
+
 class NewsDetailVC: UIViewController {
     
     var article: Article!
@@ -19,6 +23,7 @@ class NewsDetailVC: UIViewController {
     var sourceView: ACCustomLabelItemView!
     var dateView: ACCustomLabelItemView!
     var authorView: ACCustomLabelItemView!
+    weak var delegate: NewsDetailDissapearDelegate?
     var safariButton: ACButton!
 
     let padding: CGFloat = 16
@@ -28,6 +33,11 @@ class NewsDetailVC: UIViewController {
         checkIsSaved()
         configureViewController()
         configureUIElements()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        delegate?.detailVcWillDissapear()
     }
     
     func configureViewController() {
@@ -138,7 +148,7 @@ class NewsDetailVC: UIViewController {
     }
     
     private func checkIsSaved() {
-        PersistanceManager.isFavourite(article: article) { [weak self] result in
+        PersistanceManager.isSaved(article: article) { [weak self] result in
             guard let self = self else { return }
             switch result {
             case .success(let success):

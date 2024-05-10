@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol NewsCellDelegate: AnyObject {
+    func minusButtonTapped(for article: Article)
+}
+
 class NewsCell: UICollectionViewCell {
     
     static let reuseId = "NewsCell"
@@ -16,6 +20,8 @@ class NewsCell: UICollectionViewCell {
     var descriptionLabel = ACSecondaryBodyLabel(textAlignment: .left)
     var sourceView: ACCustomLabelItemView!
     var dateView: ACCustomLabelItemView!
+    var minusButtonDelegate: NewsCellDelegate?
+    var minusButton: UIButton!
     let padding: CGFloat = 8
     
     override init(frame: CGRect) {
@@ -41,8 +47,16 @@ class NewsCell: UICollectionViewCell {
         layer.cornerRadius = 16
         translatesAutoresizingMaskIntoConstraints = false
         let width = bounds.width
+        
         sourceView = ACCustomLabelItemView(symbolName: "mappin", labelText: article?.source?.name ?? "Unkown", color: .systemPink, textAlignment: .left)
         dateView = ACCustomLabelItemView(symbolName: "calendar", labelText: NetworkManager.shared.formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .left)
+        
+        minusButton = UIButton(type: .system)
+        minusButton.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
+        minusButton.tintColor = .systemPink
+        minusButton.translatesAutoresizingMaskIntoConstraints = false
+        minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
+        
         titleLabel.numberOfLines = 2
         descriptionLabel.numberOfLines = 4
         
@@ -51,11 +65,11 @@ class NewsCell: UICollectionViewCell {
         addSubview(dateView)
         addSubview(titleLabel)
         addSubview(descriptionLabel)
+        addSubview(minusButton)
         
         NSLayoutConstraint.activate([
             newsImageView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
             newsImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
-//            newsImageView.widthAnchor.constraint(equalToConstant: width - 4),
             newsImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
             newsImageView.heightAnchor.constraint(equalToConstant: width * 0.45),
             
@@ -76,6 +90,18 @@ class NewsCell: UICollectionViewCell {
             descriptionLabel.trailingAnchor.constraint(equalTo: dateView.trailingAnchor),
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
             
+            minusButton.topAnchor.constraint(equalTo: newsImageView.topAnchor, constant: 4),
+            minusButton.trailingAnchor.constraint(equalTo: newsImageView.trailingAnchor, constant: -4),
+            minusButton.widthAnchor.constraint(equalToConstant: 20),
+            minusButton.heightAnchor.constraint(equalToConstant: 20)
+            
         ])
+        
+        minusButton.isHidden = true
+    }
+    
+    @objc func minusButtonTapped() {
+        guard let article = article else { return }
+        minusButtonDelegate?.minusButtonTapped(for: article)
     }
 }

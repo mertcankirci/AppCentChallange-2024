@@ -73,7 +73,7 @@ enum PersistanceManager {
         }
     }
     
-    static func isFavourite(article: Article , completed: @escaping(Result<Bool, ACError>) -> Void) {
+    static func isSaved(article: Article , completed: @escaping(Result<Bool, ACError>) -> Void) {
         retrieveSaved { result in
             switch result {
             case .success(let success):

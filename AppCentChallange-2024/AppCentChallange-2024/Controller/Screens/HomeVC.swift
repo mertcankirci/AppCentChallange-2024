@@ -156,7 +156,7 @@ extension HomeVC: UICollectionViewDelegate {
         
         let destinationVC = NewsDetailVC()
         destinationVC.article = article
-        destinationVC.title = "Detail"
+        destinationVC.title = "Article Detail"
         navigationController?.pushViewController(destinationVC, animated: true)
     }
 }
