@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		544E11B42BF018EA00EA90F2 /* lottie-saved.json in Resources */ = {isa = PBXBuildFile; fileRef = 544E11B32BF018EA00EA90F2 /* lottie-saved.json */; };
+		544E11B62BF01E1A00EA90F2 /* lottie-unsaved.json in Resources */ = {isa = PBXBuildFile; fileRef = 544E11B52BF01E1A00EA90F2 /* lottie-unsaved.json */; };
 		54557F6F2BEFB76500AF8799 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 54557F6E2BEFB76500AF8799 /* Lottie */; };
 		54557F732BEFBA2900AF8799 /* ACLottieEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54557F722BEFBA2900AF8799 /* ACLottieEmptyStateView.swift */; };
 		54557F762BEFC04E00AF8799 /* lottie-empty-home.json in Resources */ = {isa = PBXBuildFile; fileRef = 54557F742BEFC04E00AF8799 /* lottie-empty-home.json */; };
 		54557F772BEFC04E00AF8799 /* lottie-empty-saved.json in Resources */ = {isa = PBXBuildFile; fileRef = 54557F752BEFC04E00AF8799 /* lottie-empty-saved.json */; };
+		54557F7A2BEFDCCF00AF8799 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54557F792BEFDCCE00AF8799 /* Constants.swift */; };
 		545CEFDF2BEBA23700F4EF46 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545CEFDE2BEBA23700F4EF46 /* AppDelegate.swift */; };
 		545CEFE12BEBA23700F4EF46 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545CEFE02BEBA23700F4EF46 /* SceneDelegate.swift */; };
 		545CEFE82BEBA23700F4EF46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 545CEFE72BEBA23700F4EF46 /* Assets.xcassets */; };
@@ -42,9 +45,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		544E11B32BF018EA00EA90F2 /* lottie-saved.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-saved.json"; sourceTree = "<group>"; };
+		544E11B52BF01E1A00EA90F2 /* lottie-unsaved.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-unsaved.json"; sourceTree = "<group>"; };
 		54557F722BEFBA2900AF8799 /* ACLottieEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACLottieEmptyStateView.swift; sourceTree = "<group>"; };
 		54557F742BEFC04E00AF8799 /* lottie-empty-home.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-empty-home.json"; sourceTree = "<group>"; };
 		54557F752BEFC04E00AF8799 /* lottie-empty-saved.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-empty-saved.json"; sourceTree = "<group>"; };
+		54557F792BEFDCCE00AF8799 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		545CEFDB2BEBA23700F4EF46 /* AppCentChallange-2024.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AppCentChallange-2024.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		545CEFDE2BEBA23700F4EF46 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		545CEFE02BEBA23700F4EF46 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,11 +95,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		544E11B72BF02A6700EA90F2 /* AlertController */ = {
+			isa = PBXGroup;
+			children = (
+				54F9880D2BEC19470025C04C /* ACAlertVC.swift */,
+			);
+			path = AlertController;
+			sourceTree = "<group>";
+		};
 		54557F782BEFCAC500AF8799 /* LottieFiles */ = {
 			isa = PBXGroup;
 			children = (
 				54557F742BEFC04E00AF8799 /* lottie-empty-home.json */,
 				54557F752BEFC04E00AF8799 /* lottie-empty-saved.json */,
+				544E11B32BF018EA00EA90F2 /* lottie-saved.json */,
+				544E11B52BF01E1A00EA90F2 /* lottie-unsaved.json */,
 			);
 			path = LottieFiles;
 			sourceTree = "<group>";
@@ -134,9 +150,9 @@
 		545CEFF22BEBA2A100F4EF46 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				544E11B72BF02A6700EA90F2 /* AlertController */,
 				545CF0022BEBAB4800F4EF46 /* TabBarController */,
 				545CEFFD2BEBAB0E00F4EF46 /* Screens */,
-				54F9880D2BEC19470025C04C /* ACAlertVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -164,7 +180,6 @@
 		545CEFF52BEBA2B200F4EF46 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				54557F782BEFCAC500AF8799 /* LottieFiles */,
 				545CEFDE2BEBA23700F4EF46 /* AppDelegate.swift */,
 				545CEFE02BEBA23700F4EF46 /* SceneDelegate.swift */,
 			);
@@ -183,8 +198,10 @@
 		545CEFF72BEBA2BE00F4EF46 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				54557F782BEFCAC500AF8799 /* LottieFiles */,
 				545CF0062BEBAFA200F4EF46 /* ErrorMessages.swift */,
 				545CF0082BEBAFDE00F4EF46 /* UIHelper.swift */,
+				54557F792BEFDCCE00AF8799 /* Constants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -340,6 +357,8 @@
 				545CEFEB2BEBA23700F4EF46 /* LaunchScreen.storyboard in Resources */,
 				54557F762BEFC04E00AF8799 /* lottie-empty-home.json in Resources */,
 				545CEFE82BEBA23700F4EF46 /* Assets.xcassets in Resources */,
+				544E11B42BF018EA00EA90F2 /* lottie-saved.json in Resources */,
+				544E11B62BF01E1A00EA90F2 /* lottie-unsaved.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +380,7 @@
 				545CF0012BEBAB2D00F4EF46 /* NewsDetailVC.swift in Sources */,
 				545CF0252BEBE91D00F4EF46 /* ACBodyLabel.swift in Sources */,
 				545CF0042BEBAB5F00F4EF46 /* ACTabBarController.swift in Sources */,
+				54557F7A2BEFDCCF00AF8799 /* Constants.swift in Sources */,
 				545CF0172BEBDF5500F4EF46 /* PersistanceManager.swift in Sources */,
 				545CF0152BEBD92F00F4EF46 /* NewsResponse.swift in Sources */,
 				545CEFFB2BEBA2E500F4EF46 /* HomeVC.swift in Sources */,

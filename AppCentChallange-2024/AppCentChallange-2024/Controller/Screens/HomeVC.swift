@@ -9,8 +9,6 @@ import UIKit
 
 class HomeVC: UIViewController {
     
-    //MARK: Empty state view'lar ust uste biniyor buna bir didntSearchView yaz.
-    
     enum Section {
         case main
     }
@@ -20,6 +18,7 @@ class HomeVC: UIViewController {
     var news: [Article] = []
     var page: Int = 1
     var contentHeight: Double? = nil
+    var deleteButton: UIBarButtonItem!
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Article>!
@@ -41,7 +40,7 @@ class HomeVC: UIViewController {
     
     func configureViewController() {
         view.backgroundColor = .secondarySystemBackground
-        let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteButtonTapped))
+        deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteButtonTapped))
         deleteButton.tintColor = .systemPink
         navigationItem.rightBarButtonItem = deleteButton
     }
@@ -103,14 +102,22 @@ class HomeVC: UIViewController {
                 self.dismissLoadingView()
                 
                 guard let articles = success.articles else { return }
-                if articles.count <= 0 {
-                    presentACAlertOnMainThread(title: "Run out of news", message: "No news", buttonTitle: "Ok")
-                    return
+                if articles.isEmpty {
+                    if page > 1 {
+                        presentACAlertOnMainThread(title: "End of news", message: "You've reached at the end of the news. 😎", buttonTitle: "Ok")
+                    } else {
+                        presentACAlertOnMainThread(title: "No news", message: "Unforunately there we couldn't find any news for this keyword. 🥲", buttonTitle: "Ok")
+                    }
+                    updateTitles()
                 }
                 
                 self.news.append(contentsOf: articles)
                 
                 UIHelper.emptyStateViewHelper(in: self, articles: news, screen: .home)
+                
+                if #available(iOS 16.0, *) {
+                    deleteButton.isHidden = self.news.isEmpty
+                }
                 
                 self.updateData(on: news)
                 
@@ -123,7 +130,7 @@ class HomeVC: UIViewController {
     
     @objc func deleteButtonTapped() {
         if self.news.isEmpty {
-            presentACAlertOnMainThread(title: "You don't have any news yet", message: "Please search", buttonTitle: "Ok")
+            presentACAlertOnMainThread(title: "Unable to delete.", message: "Please search a keyword to display the news.", buttonTitle: "Ok")
         } else {
             DispatchQueue.main.async {
                 self.news.removeAll()
@@ -132,15 +139,14 @@ class HomeVC: UIViewController {
                 UIHelper.emptyStateViewHelper(in: self, articles: self.news, screen: .home)
             }
             
-            self.title = "Appcent News App"
-            self.tabBarItem.title = "Home"
+            updateTitles()
             
             self.collectionView.layer.add(transitionAnimation(), forKey: kCATransition)
             
-            //ScrollViewDidEndDragging fonksiyonundan aldigim content height kadar yukari kaydiriyorum ki searchController ve navigationbar gozuksun.
+        //MARK: Scroll up by the content height I obtained from the ScrollViewDidEndDragging function so that the searchController and navigation bar are visible.
             guard let contentHeight = self.contentHeight else { return }
             self.collectionView.setContentOffset(CGPoint(x: 0, y: -contentHeight), animated: false)
-
+            
         }
     }
     
@@ -151,6 +157,13 @@ class HomeVC: UIViewController {
         transition.type = CATransitionType.fade
         transition.subtype = CATransitionSubtype.fromBottom
         return transition
+    }
+    
+    private func updateTitles() {
+        DispatchQueue.main.async {
+            self.title = "Appcent News App"
+            self.tabBarItem.title = "Home"
+        }
     }
 }
 
@@ -175,6 +188,7 @@ extension HomeVC: UICollectionViewDelegate {
         let article = self.news[indexPath.item]
         
         let destinationVC = NewsDetailVC()
+        destinationVC.navigationController?.navigationBar.prefersLargeTitles = false
         destinationVC.article = article
         destinationVC.title = "Article Detail"
         navigationController?.pushViewController(destinationVC, animated: true)

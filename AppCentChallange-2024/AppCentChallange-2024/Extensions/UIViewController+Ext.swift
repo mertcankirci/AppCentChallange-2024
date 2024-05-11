@@ -52,12 +52,13 @@ extension UIViewController {
         containerView = UIView(frame: view.bounds)
         view.addSubview(containerView)
         
-        containerView.backgroundColor = .systemBackground
+        containerView.backgroundColor = .black
         containerView.alpha = 0
         
-        UIView.animate(withDuration: 0.25) { containerView.alpha = 0.8 }
+        UIView.animate(withDuration: 0.25) { containerView.alpha = 0.95 }
         
         let activityIndicatior = UIActivityIndicatorView(style: .large)
+        activityIndicatior.color = .systemPink
         containerView.addSubview(activityIndicatior)
         
         activityIndicatior.translatesAutoresizingMaskIntoConstraints = false
@@ -77,59 +78,46 @@ extension UIViewController {
         }
     }
     
-    func showSavedAnimation() {
-        let label = UILabel()
-        label.text = "Saved!"
-        label.textColor = .label
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textAlignment = .center
-        
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 80))
-        containerView.center = view.center
-        containerView.backgroundColor = .systemGreen
-        containerView.layer.cornerRadius = 10
+    func showLottiePersistanceAnimation(for type: PersistanceActionType) {
+        let containerView = UIView(frame: .zero)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.backgroundColor = .black.withAlphaComponent(0.8)
         containerView.alpha = 0
         
-        label.frame = CGRect(x: 0, y: 0, width: 200, height: 80)
-        containerView.addSubview(label)
-        view.addSubview(containerView)
+        let animationView = LottieAnimationView(name: type == .add ? "lottie-saved" : "lottie-unsaved")
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .playOnce
+        animationView.animationSpeed = 1.5
+        animationView.translatesAutoresizingMaskIntoConstraints = false
         
-        UIView.animate(withDuration: 0.5, animations: {
+        containerView.addSubview(animationView)
+        view.addSubview(containerView)
+
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: view.topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            animationView.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+            animationView.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
+            animationView.widthAnchor.constraint(lessThanOrEqualToConstant: 250),
+            animationView.heightAnchor.constraint(lessThanOrEqualToConstant: 250),
+            containerView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            containerView.heightAnchor.constraint(equalTo: view.heightAnchor)
+        ])
+        
+        UIView.animate(withDuration: 0.2) {
             containerView.alpha = 1
-        }) { (_) in
-            UIView.animate(withDuration: 0.5, delay: 1.0, options: [], animations: {
-                containerView.alpha = 0
-            }, completion: { (_) in
-                containerView.removeFromSuperview()
-            })
         }
-    }
-    
-    func showUnsavedAnimation() {
-        let label = UILabel()
-        label.text = "Unsaved!"
-        label.textColor = .label
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.textAlignment = .center
         
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 80))
-        containerView.center = view.center
-        containerView.backgroundColor = .systemPink
-        containerView.layer.cornerRadius = 10
-        containerView.alpha = 0
-        
-        label.frame = CGRect(x: 0, y: 0, width: 200, height: 80)
-        containerView.addSubview(label)
-        view.addSubview(containerView)
-        
-        UIView.animate(withDuration: 0.5, animations: {
-            containerView.alpha = 1
-        }) { _ in
-            UIView.animate(withDuration: 0.5, delay: 1.0, options: [], animations: {
-                containerView.alpha = 0
-            }, completion: { _ in
+        animationView.play { completed in
+            if completed {
+                UIView.animate(withDuration: 0.3) {
+                    containerView.alpha = 0
+                }
                 containerView.removeFromSuperview()
-            })
+            }
         }
     }
 }

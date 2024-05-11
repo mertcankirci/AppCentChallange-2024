@@ -10,7 +10,6 @@ import UIKit
 class ACNewsImageView: UIImageView {
     
     let cache = NetworkManager.shared.cache
-    let placeHolderImage = UIImage(named: "news-placeholder")
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,7 +24,7 @@ class ACNewsImageView: UIImageView {
         translatesAutoresizingMaskIntoConstraints = false
         layer.cornerRadius = 12
         clipsToBounds = true
-        image = placeHolderImage
+        image = Images.emptyArticleImage
     }
     
     func downloadImage(from urlString: String) {

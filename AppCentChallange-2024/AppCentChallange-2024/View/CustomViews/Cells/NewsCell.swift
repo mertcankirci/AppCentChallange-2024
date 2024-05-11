@@ -15,18 +15,18 @@ class NewsCell: UICollectionViewCell {
     
     static let reuseId = "NewsCell"
     var article: Article? = nil
-    var newsImageView = ACNewsImageView(frame: .zero)
-    var titleLabel = ACTitleLabel(textAlignment: .left, fontSize: 18) //Might need to adjust
-    var descriptionLabel = ACSecondaryBodyLabel(textAlignment: .left)
+    var newsImageView: ACNewsImageView!
+    var titleLabel: ACTitleLabel!
+    var descriptionLabel: ACSecondaryBodyLabel!
     var sourceView: ACCustomLabelItemView!
     var dateView: ACCustomLabelItemView!
-    var minusButtonDelegate: NewsCellDelegate?
+    weak var minusButtonDelegate: NewsCellDelegate?
     var minusButton: UIButton!
     let padding: CGFloat = 8
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+        configureUIElements()
         configureLayout()
     }
     
@@ -38,27 +38,33 @@ class NewsCell: UICollectionViewCell {
         self.article = article
         self.titleLabel.text = article.title
         self.descriptionLabel.text = article.description
+        
         newsImageView.downloadImage(from: article.urlToImage ?? "")
         sourceView.label.text = article.source?.name ?? "Unknown"
         dateView.label.text = NetworkManager.shared.formatDate(for: article.publishedAt ?? "Unkown")
     }
     
-    func configure() {
+    func configureUIElements() {
         backgroundColor = .systemBackground
         layer.cornerRadius = 16
         translatesAutoresizingMaskIntoConstraints = false
         
-        sourceView = ACCustomLabelItemView(symbolName: "mappin", labelText: article?.source?.name ?? "Unkown", color: .systemPink, textAlignment: .left)
-        dateView = ACCustomLabelItemView(symbolName: "calendar", labelText: NetworkManager.shared.formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .left)
+        sourceView = ACCustomLabelItemView(symbolName: SFSymbols.source, labelText: article?.source?.name ?? "Unkown", color: .systemPink, textAlignment: .left)
+        dateView = ACCustomLabelItemView(symbolName: SFSymbols.date, labelText: NetworkManager.shared.formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .left)
         
         minusButton = UIButton(type: .system)
-        minusButton.setImage(UIImage(systemName: "minus.circle.fill"), for: .normal)
+        minusButton.setImage(UIImage(systemName: SFSymbols.delete), for: .normal)
         minusButton.tintColor = .systemPink
         minusButton.translatesAutoresizingMaskIntoConstraints = false
         minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         
+        titleLabel = ACTitleLabel(textAlignment: .left, fontSize: 18)
         titleLabel.numberOfLines = 2
+        
+        descriptionLabel = ACSecondaryBodyLabel(textAlignment: .left)
         descriptionLabel.numberOfLines = 4
+        
+        newsImageView =  ACNewsImageView(frame: .zero)
         
         addSubview(newsImageView)
         addSubview(sourceView)

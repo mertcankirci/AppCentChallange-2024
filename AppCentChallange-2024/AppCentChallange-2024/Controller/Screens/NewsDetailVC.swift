@@ -17,9 +17,9 @@ class NewsDetailVC: UIViewController {
     var isSaved: Bool!
     var saveButton: UIBarButtonItem!
     var shareButton: UIBarButtonItem!
-    var newsImageView = ACNewsImageView(frame: .zero)
-    var titleLabel = ACTitleLabel(textAlignment: .left, fontSize: 18)
-    var descriptionLabel = ACBodyLabel(textAlignment: .left)
+    var newsImageView: ACNewsImageView!
+    var titleLabel: ACTitleLabel!
+    var descriptionLabel: ACBodyLabel!
     var sourceView: ACCustomLabelItemView!
     var dateView: ACCustomLabelItemView!
     var authorView: ACCustomLabelItemView!
@@ -51,28 +51,33 @@ class NewsDetailVC: UIViewController {
         navigationController?.navigationBar.topItem?.backBarButtonItem = backButton
         self.navigationController?.navigationBar.prefersLargeTitles = false
         
-        saveButton = UIBarButtonItem(image: UIImage(systemName: isSaved ? "bookmark.fill" : "bookmark"), style: .plain, target: self, action: #selector(saveButtonTapped))
+        saveButton = UIBarButtonItem(image: UIImage(systemName: isSaved ? SFSymbols.afterSave : SFSymbols.beforeSave), style: .plain, target: self, action: #selector(saveButtonTapped))
         saveButton.tintColor = .systemPink
         
-        shareButton = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(shareButtonTapped))
+        shareButton = UIBarButtonItem(image: UIImage(systemName: SFSymbols.share), style: .plain, target: self, action: #selector(shareButtonTapped))
         shareButton.tintColor = .systemPink
         
         navigationItem.rightBarButtonItems = [saveButton, shareButton]
     }
     
     func configureUIElements() {
+        newsImageView = ACNewsImageView(frame: .zero)
         newsImageView.downloadImage(from: article.urlToImage ?? "")
         newsImageView.layer.cornerRadius = 12
+        
+        titleLabel = ACTitleLabel(textAlignment: .left, fontSize: 18)
         titleLabel.text = article.title
         titleLabel.numberOfLines = 3
+        
+        descriptionLabel = ACBodyLabel(textAlignment: .left)
         descriptionLabel.text = article.description
         descriptionLabel.numberOfLines = 10
         
-        sourceView = ACCustomLabelItemView(symbolName: "mappin", labelText: article?.source?.name ?? "Unkown", color: .systemPink, textAlignment: .center)
-        dateView = ACCustomLabelItemView(symbolName: "calendar", labelText: NetworkManager.shared.formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .right)
-        authorView = ACCustomLabelItemView(symbolName: "person.fill", labelText: article.author ?? "Unknown", color: .systemPink, textAlignment: .left)
+        sourceView = ACCustomLabelItemView(symbolName: SFSymbols.source, labelText: article?.source?.name ?? "Unkown", color: .systemPink, textAlignment: .center)
+        dateView = ACCustomLabelItemView(symbolName: SFSymbols.date, labelText: NetworkManager.shared.formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .right)
+        authorView = ACCustomLabelItemView(symbolName: SFSymbols.author, labelText: article.author ?? "Unknown", color: .systemPink, textAlignment: .left)
         
-        safariButton = ACButton(backgroundColor: .systemPink, title: "News Source")
+        safariButton = ACButton(backgroundColor: .systemPink, title: "View on Website")
         safariButton.addTarget(self, action: #selector(safariButtonTapped), for: .touchUpInside)
         
         view.addSubview(newsImageView)
@@ -130,7 +135,7 @@ class NewsDetailVC: UIViewController {
             PersistanceManager.updateWith(article: article, actionType: .add) { [weak self] error in
                 guard let self = self else { return }
                 guard let error = error else {
-                    showSavedAnimation()
+                    showLottiePersistanceAnimation(for: .add)
                     return
                 }
                 self.presentACAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
@@ -139,7 +144,7 @@ class NewsDetailVC: UIViewController {
             PersistanceManager.updateWith(article: article, actionType: .remove) { [weak self] error in
                 guard let self = self else { return }
                 guard let error = error else {
-                    showUnsavedAnimation()
+                    showLottiePersistanceAnimation(for: .remove)
                     return
                 }
                 self.presentACAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
@@ -168,7 +173,7 @@ class NewsDetailVC: UIViewController {
         """
         let shareImage = newsImageView.image
         let shareUrl = String(describing: article.url ?? "CorruptedURL")
-        let shareViewController = UIActivityViewController(activityItems: [shareText, shareImage ?? UIImage(named: "news-placeholder")!, shareUrl], applicationActivities: [])
+        let shareViewController = UIActivityViewController(activityItems: [shareText, shareImage ?? Images.emptyArticleImage!, shareUrl], applicationActivities: [])
         shareViewController.editButtonItem.tintColor = .systemPink
         present(shareViewController, animated: true)
     }

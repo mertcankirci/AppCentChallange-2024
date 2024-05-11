@@ -13,5 +13,5 @@ enum ACError: String, Error {
     case invalidResponse = "Invalid response from the server , please try again."
     case invalidData = "The data received from the server was invalid. Please try again"
     case unableToSave = "There was an error. Please try again."
-    case alreadyInSaved = "You've already saved this news."
+    case alreadyInSaved = "You've already saved this article."
 }
