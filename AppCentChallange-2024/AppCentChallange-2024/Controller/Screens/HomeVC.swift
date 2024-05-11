@@ -19,6 +19,7 @@ class HomeVC: UIViewController {
     var lastQuery: String? = nil
     var news: [Article] = []
     var page: Int = 1
+    var contentHeight: Double? = nil
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Article>!
@@ -30,12 +31,13 @@ class HomeVC: UIViewController {
         configureViewController()
         configureDataSource()
         configureSearchController()
+        UIHelper.emptyStateViewHelper(in: self, articles: news, screen: .home)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
-
+    
     func configureViewController() {
         view.backgroundColor = .secondarySystemBackground
         let deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteButtonTapped))
@@ -82,10 +84,11 @@ class HomeVC: UIViewController {
         let searchController = UISearchController()
         searchController.searchResultsUpdater = self
         searchController.delegate = self
-        searchController.searchBar.placeholder = "Search..."
-        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search for a keyword."
+        searchController.obscuresBackgroundDuringPresentation = true
         searchController.searchBar.searchTextField.leftView?.tintColor = .systemPink
         searchController.searchBar.delegate = self
+        searchController.definesPresentationContext = true
         navigationItem.searchController = searchController
     }
     
@@ -106,11 +109,7 @@ class HomeVC: UIViewController {
                 
                 self.news.append(contentsOf: articles)
                 
-                if self.news.isEmpty {
-                    let message = "Please search a keyword."
-                    DispatchQueue.main.async { self.showEmptyStateView(with: message, in: self.view) }
-                    return
-                }
+                UIHelper.emptyStateViewHelper(in: self, articles: news, screen: .home)
                 
                 self.updateData(on: news)
                 
@@ -124,22 +123,43 @@ class HomeVC: UIViewController {
     @objc func deleteButtonTapped() {
         if self.news.isEmpty {
             presentACAlertOnMainThread(title: "You don't have any news yet", message: "Please search", buttonTitle: "Ok")
-            collectionView.scrollsToTop = true
         } else {
+            DispatchQueue.main.async {
+                self.news.removeAll()
+                self.updateData(on: self.news)
+                self.collectionView.reloadData()
+                UIHelper.emptyStateViewHelper(in: self, articles: self.news, screen: .home)
+            }
+            
             self.title = "Appcent News App"
-            self.news.removeAll()
-            updateData(on: self.news)
-            collectionView.scrollsToTop = true
+            self.tabBarItem.title = "Home"
+            
+            self.collectionView.layer.add(transitionAnimation(), forKey: kCATransition)
+            
+            //ScrollViewDidEndDragging fonksiyonundan aldigim content height kadar yukari kaydiriyorum ki searchController ve navigationbar gozuksun.
+            guard let contentHeight = self.contentHeight else { return }
+            self.collectionView.setContentOffset(CGPoint(x: 0, y: -contentHeight), animated: false)
+
         }
     }
-
+    
+    private func transitionAnimation() -> CATransition {
+        let transition = CATransition()
+        transition.duration = 0.3
+        transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        transition.type = CATransitionType.fade
+        transition.subtype = CATransitionSubtype.fromBottom
+        return transition
+    }
 }
 
 extension HomeVC: UICollectionViewDelegate {
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         let offSetY = scrollView.contentOffset.y
-        let contentHeight = scrollView.contentSize.height
+        contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.size.height
+        
+        guard let contentHeight = contentHeight else { return }
         
         if offSetY > contentHeight - height {
             guard let query = query else { return }
@@ -161,6 +181,8 @@ extension HomeVC: UICollectionViewDelegate {
 }
 
 extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
+
+    
     func updateSearchResults(for searchController: UISearchController) { }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -172,13 +194,11 @@ extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate, UISearchControll
         }
         self.query = searchBar.text
         getNews(query: query)
-        searchBar.resignFirstResponder()
         self.title = "Searching for: \(query)"
+        self.tabBarItem.title = "Home"
         navigationItem.searchController?.isActive = false
     }
-    
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        self.title = "Appcent News App"
-    }
 }
+
+
 

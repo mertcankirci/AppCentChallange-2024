@@ -93,6 +93,8 @@ class SavedNewsVC: UIViewController {
             switch result {
             case .success(let success):
                 self.articles = success
+                guard let articles = self.articles else { return }
+                UIHelper.emptyStateViewHelper(in: self, articles: articles, screen: .saved)
             case .failure(let error):
                 self.presentACAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }
@@ -129,18 +131,18 @@ extension SavedNewsVC: UICollectionViewDelegate {
 
 extension SavedNewsVC: NewsCellDelegate {
     func minusButtonTapped(for article: Article) {
-        PersistanceManager.updateWith(article: article, actionType: .remove) { error in
             PersistanceManager.updateWith(article: article, actionType: .remove) { [weak self] error in
                 guard let self = self else { return }
                 guard let error = error else {
-                    self.presentACAlertOnMainThread(title: "Success !", message: "You've successfully unsaved this article", buttonTitle: "Ok")
+                    showUnsavedAnimation()
                     self.articles?.removeAll(where: { $0.title == article.title })
                     updateData(on: self.articles ?? [])
+                    guard let articles = self.articles else { return }
+                    UIHelper.emptyStateViewHelper(in: self, articles: articles, screen: .saved)
                     return
                 }
                 self.presentACAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }
-        }
     }
 }
 

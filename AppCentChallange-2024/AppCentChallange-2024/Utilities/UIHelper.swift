@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum EmptyStateScreen {
+    case home, saved
+}
+
 struct UIHelper {
     static func createNewsFlowLayout(in view: UIView) -> UICollectionViewFlowLayout {
         let width = view.bounds.width
@@ -26,5 +30,25 @@ struct UIHelper {
         let itemWidth = (availableWidth - ( 2 * itemPad )) / 3
         
         return itemWidth
+    }
+    
+    static func emptyStateViewHelper(in vc: UIViewController, articles: [Article], screen: EmptyStateScreen) {
+        var messageString = ""
+        
+        switch screen {
+        case .home:
+            messageString = "Please search for a keyword to list the results ! 🌍 "
+        case .saved:
+            messageString = "You didn't save any news. Lets go and save some ! 😇"
+        }
+        if articles.isEmpty {
+            DispatchQueue.main.async {
+                vc.showEmptyStateView(with: messageString, in: vc.view)
+            }
+        } else {
+            DispatchQueue.main.async {
+                vc.dismissEmptyStateView()
+            }
+        }
     }
 }

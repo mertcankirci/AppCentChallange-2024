@@ -18,7 +18,7 @@ class NewsDetailVC: UIViewController {
     var saveButton: UIBarButtonItem!
     var shareButton: UIBarButtonItem!
     var newsImageView = ACNewsImageView(frame: .zero)
-    var titleLabel = ACTitleLabel(textAlignment: .left, fontSize: 18) //Might need to adjust
+    var titleLabel = ACTitleLabel(textAlignment: .left, fontSize: 18)
     var descriptionLabel = ACBodyLabel(textAlignment: .left)
     var sourceView: ACCustomLabelItemView!
     var dateView: ACCustomLabelItemView!
@@ -130,7 +130,7 @@ class NewsDetailVC: UIViewController {
             PersistanceManager.updateWith(article: article, actionType: .add) { [weak self] error in
                 guard let self = self else { return }
                 guard let error = error else {
-                    self.presentACAlertOnMainThread(title: "Success !", message: "You've successfully saved this article", buttonTitle: "Ok")
+                    showSavedAnimation()
                     return
                 }
                 self.presentACAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
@@ -139,7 +139,7 @@ class NewsDetailVC: UIViewController {
             PersistanceManager.updateWith(article: article, actionType: .remove) { [weak self] error in
                 guard let self = self else { return }
                 guard let error = error else {
-                    self.presentACAlertOnMainThread(title: "Success !", message: "You've successfully unsaved this article", buttonTitle: "Ok")
+                    showUnsavedAnimation()
                     return
                 }
                 self.presentACAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
