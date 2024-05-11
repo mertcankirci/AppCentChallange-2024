@@ -31,11 +31,12 @@ class HomeVC: UIViewController {
         configureViewController()
         configureDataSource()
         configureSearchController()
-        UIHelper.emptyStateViewHelper(in: self, articles: news, screen: .home)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = true
+        UIHelper.emptyStateViewHelper(in: self, articles: news, screen: .home)
     }
     
     func configureViewController() {

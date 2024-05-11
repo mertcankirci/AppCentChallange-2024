@@ -18,7 +18,7 @@ class NetworkManager {
     
     
     func getNews(for query: String, page: Int, completed: @escaping(Result<NewsResponse, ACError>) -> Void) {
-        let endPoint = baseURL + "\(query)&page=\(page)&apiKey=\(apiKey2)"
+        let endPoint = baseURL + "\(query)&page=\(page)&apiKey=\(apiKey)"
         #if DEBUG
         print(endPoint)
         #endif

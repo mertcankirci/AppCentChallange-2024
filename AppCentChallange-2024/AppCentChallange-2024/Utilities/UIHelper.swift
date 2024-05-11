@@ -43,11 +43,11 @@ struct UIHelper {
         }
         if articles.isEmpty {
             DispatchQueue.main.async {
-                vc.showEmptyStateView(with: messageString, in: vc.view)
+                vc.presentLottieAnimation(with: messageString, in: vc.view, screenType: screen)
             }
         } else {
             DispatchQueue.main.async {
-                vc.dismissEmptyStateView()
+                vc.dismissLottieAnimation()
             }
         }
     }

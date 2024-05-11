@@ -7,8 +7,10 @@
 
 import UIKit
 import SafariServices
+import Lottie
 
 fileprivate var containerView: UIView!
+fileprivate var emptyLottieAnimationView: ACLottieEmptyStateView?
 
 extension UIViewController {
     
@@ -18,6 +20,25 @@ extension UIViewController {
             alertVC.modalPresentationStyle = .overFullScreen
             alertVC.modalTransitionStyle = .crossDissolve
             self.present(alertVC, animated: true)
+        }
+    }
+    
+    func presentLottieAnimation(with message: String, in view: UIView, screenType: EmptyStateScreen) {
+        if let _ = emptyLottieAnimationView {
+            emptyLottieAnimationView?.removeFromSuperview()
+            emptyLottieAnimationView = nil
+        }
+        emptyLottieAnimationView = ACLottieEmptyStateView(message: message, for: screenType)
+        emptyLottieAnimationView!.frame = view.bounds
+        view.addSubview(emptyLottieAnimationView!)
+    }
+    
+    func dismissLottieAnimation() {
+        if emptyLottieAnimationView != nil {
+            DispatchQueue.main.async {
+                emptyLottieAnimationView?.removeFromSuperview()
+                emptyLottieAnimationView = nil
+            }
         }
     }
     
@@ -53,21 +74,6 @@ extension UIViewController {
         DispatchQueue.main.async {
             containerView.removeFromSuperview()
             containerView = nil
-        }
-    }
-    
-    func showEmptyStateView(with message: String, in view: UIView) {
-        let emptyStateView = ACEmptyStateView(message: message)
-        emptyStateView.frame = view.bounds
-        view.addSubview(emptyStateView)
-    }
-    
-    func dismissEmptyStateView() {
-        for subview in view.subviews {
-            if let emptyStateView = subview as? ACEmptyStateView {
-                emptyStateView.removeFromSuperview()
-                break
-            }
         }
     }
     
@@ -118,10 +124,10 @@ extension UIViewController {
         
         UIView.animate(withDuration: 0.5, animations: {
             containerView.alpha = 1
-        }) { (_) in
+        }) { _ in
             UIView.animate(withDuration: 0.5, delay: 1.0, options: [], animations: {
                 containerView.alpha = 0
-            }, completion: { (_) in
+            }, completion: { _ in
                 containerView.removeFromSuperview()
             })
         }
