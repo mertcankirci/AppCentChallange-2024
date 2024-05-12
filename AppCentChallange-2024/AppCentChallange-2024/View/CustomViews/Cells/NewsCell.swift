@@ -41,7 +41,7 @@ class NewsCell: UICollectionViewCell {
         
         newsImageView.downloadImage(from: article.urlToImage ?? "")
         sourceView.label.text = article.source?.name ?? "Unknown"
-        dateView.label.text = NetworkManager.shared.formatDate(for: article.publishedAt ?? "Unkown")
+        dateView.label.text = UIHelper.formatDate(for: article.publishedAt ?? "Unkown")
     }
     
     func configureUIElements() {
@@ -50,7 +50,7 @@ class NewsCell: UICollectionViewCell {
         translatesAutoresizingMaskIntoConstraints = false
         
         sourceView = ACCustomLabelItemView(symbolName: SFSymbols.source, labelText: article?.source?.name ?? "Unkown", color: .systemPink, textAlignment: .left)
-        dateView = ACCustomLabelItemView(symbolName: SFSymbols.date, labelText: NetworkManager.shared.formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .left)
+        dateView = ACCustomLabelItemView(symbolName: SFSymbols.date, labelText: UIHelper.formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .left)
         
         minusButton = UIButton(type: .system)
         minusButton.setImage(UIImage(systemName: SFSymbols.delete), for: .normal)

@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 enum ACError: String, Error {
     case invalidQuery = "This word created an invalid request. Please try again."
     case unableToComplete = "Unable to complete request please check your internet connection."
@@ -15,3 +16,4 @@ enum ACError: String, Error {
     case unableToSave = "There was an error. Please try again."
     case alreadyInSaved = "You've already saved this article."
 }
+

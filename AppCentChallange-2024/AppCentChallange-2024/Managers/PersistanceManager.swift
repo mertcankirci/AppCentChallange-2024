@@ -20,7 +20,6 @@ enum PersistanceManager {
     }
     
     static func updateWith(article: Article, actionType: PersistanceActionType, completed: @escaping (ACError?) -> Void) {
-        
         retrieveSaved { result in
             switch result {
             case .success(let articles):
@@ -46,7 +45,6 @@ enum PersistanceManager {
     }
     
     static func retrieveSaved(completed: @escaping(Result<[Article], ACError>) -> Void) {
-        
         guard let savedData = defaults.object(forKey: Keys.saved) as? Data else {
             //First time trying to access/
             completed(.success([]))
@@ -63,7 +61,6 @@ enum PersistanceManager {
     }
     
     static func saveFavorites(articles: [Article]) -> ACError? {
-        
         do {
             let encoder = JSONEncoder()
             let encodedSaved = try encoder.encode(articles)

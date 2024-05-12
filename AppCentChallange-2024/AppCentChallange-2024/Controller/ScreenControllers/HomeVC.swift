@@ -30,7 +30,6 @@ class HomeVC: UIViewController {
         configureViewController()
         configureDataSource()
         configureSearchController()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

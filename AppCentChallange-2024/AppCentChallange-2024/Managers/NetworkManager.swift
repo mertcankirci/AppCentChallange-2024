@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class NetworkManager {
     static let shared = NetworkManager()
@@ -16,8 +17,8 @@ class NetworkManager {
     
     private init () {}
     
-    
     func getNews(for query: String, page: Int, completed: @escaping(Result<NewsResponse, ACError>) -> Void) {
+
         let endPoint = baseURL + "\(query)&page=\(page)&apiKey=\(apiKey)"
         #if DEBUG
         print(endPoint)
@@ -51,10 +52,5 @@ class NetworkManager {
             }
         }
         task.resume()
-    }
-    
-    func formatDate(for date: String) -> String {
-        guard let formattedDate = date.convertToDate() else { return ""}
-        return formattedDate.convertToMonthYearDayFormat()
     }
 }

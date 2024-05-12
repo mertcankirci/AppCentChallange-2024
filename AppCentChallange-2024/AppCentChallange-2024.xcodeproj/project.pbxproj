@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		544E11B42BF018EA00EA90F2 /* lottie-saved.json in Resources */ = {isa = PBXBuildFile; fileRef = 544E11B32BF018EA00EA90F2 /* lottie-saved.json */; };
 		544E11B62BF01E1A00EA90F2 /* lottie-unsaved.json in Resources */ = {isa = PBXBuildFile; fileRef = 544E11B52BF01E1A00EA90F2 /* lottie-unsaved.json */; };
+		544E11BA2BF0375800EA90F2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 544E11B92BF0375800EA90F2 /* Alamofire */; };
+		544E11BC2BF0375800EA90F2 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 544E11BB2BF0375800EA90F2 /* AlamofireDynamic */; };
+		544E11C42BF0401200EA90F2 /* AppCentChallange_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544E11C32BF0401200EA90F2 /* AppCentChallange_2024Tests.swift */; };
+		544E11CB2BF0413F00EA90F2 /* NetworkManager_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544E11CA2BF0413F00EA90F2 /* NetworkManager_Tests.swift */; };
 		54557F6F2BEFB76500AF8799 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 54557F6E2BEFB76500AF8799 /* Lottie */; };
 		54557F732BEFBA2900AF8799 /* ACLottieEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54557F722BEFBA2900AF8799 /* ACLottieEmptyStateView.swift */; };
 		54557F762BEFC04E00AF8799 /* lottie-empty-home.json in Resources */ = {isa = PBXBuildFile; fileRef = 54557F742BEFC04E00AF8799 /* lottie-empty-home.json */; };
@@ -44,9 +48,22 @@
 		54F988152BEC45690025C04C /* ACCustomLabelItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F988142BEC45690025C04C /* ACCustomLabelItemView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		544E11C52BF0401200EA90F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 545CEFD32BEBA23700F4EF46 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 545CEFDA2BEBA23700F4EF46;
+			remoteInfo = "AppCentChallange-2024";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		544E11B32BF018EA00EA90F2 /* lottie-saved.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-saved.json"; sourceTree = "<group>"; };
 		544E11B52BF01E1A00EA90F2 /* lottie-unsaved.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-unsaved.json"; sourceTree = "<group>"; };
+		544E11C12BF0401200EA90F2 /* AppCentChallange-2024Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AppCentChallange-2024Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		544E11C32BF0401200EA90F2 /* AppCentChallange_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCentChallange_2024Tests.swift; sourceTree = "<group>"; };
+		544E11CA2BF0413F00EA90F2 /* NetworkManager_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager_Tests.swift; sourceTree = "<group>"; };
 		54557F722BEFBA2900AF8799 /* ACLottieEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACLottieEmptyStateView.swift; sourceTree = "<group>"; };
 		54557F742BEFC04E00AF8799 /* lottie-empty-home.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-empty-home.json"; sourceTree = "<group>"; };
 		54557F752BEFC04E00AF8799 /* lottie-empty-saved.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-empty-saved.json"; sourceTree = "<group>"; };
@@ -84,11 +101,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		544E11BE2BF0401200EA90F2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		545CEFD82BEBA23700F4EF46 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				54557F6F2BEFB76500AF8799 /* Lottie in Frameworks */,
+				544E11BC2BF0375800EA90F2 /* AlamofireDynamic in Frameworks */,
+				544E11BA2BF0375800EA90F2 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +127,15 @@
 				54F9880D2BEC19470025C04C /* ACAlertVC.swift */,
 			);
 			path = AlertController;
+			sourceTree = "<group>";
+		};
+		544E11C22BF0401200EA90F2 /* AppCentChallange-2024Tests */ = {
+			isa = PBXGroup;
+			children = (
+				544E11C32BF0401200EA90F2 /* AppCentChallange_2024Tests.swift */,
+				544E11CA2BF0413F00EA90F2 /* NetworkManager_Tests.swift */,
+			);
+			path = "AppCentChallange-2024Tests";
 			sourceTree = "<group>";
 		};
 		54557F782BEFCAC500AF8799 /* LottieFiles */ = {
@@ -118,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				545CEFDD2BEBA23700F4EF46 /* AppCentChallange-2024 */,
+				544E11C22BF0401200EA90F2 /* AppCentChallange-2024Tests */,
 				545CEFDC2BEBA23700F4EF46 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -126,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				545CEFDB2BEBA23700F4EF46 /* AppCentChallange-2024.app */,
+				544E11C12BF0401200EA90F2 /* AppCentChallange-2024Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,7 +189,7 @@
 			children = (
 				544E11B72BF02A6700EA90F2 /* AlertController */,
 				545CF0022BEBAB4800F4EF46 /* TabBarController */,
-				545CEFFD2BEBAB0E00F4EF46 /* Screens */,
+				545CEFFD2BEBAB0E00F4EF46 /* ScreenControllers */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -228,14 +265,14 @@
 			path = CustomViews;
 			sourceTree = "<group>";
 		};
-		545CEFFD2BEBAB0E00F4EF46 /* Screens */ = {
+		545CEFFD2BEBAB0E00F4EF46 /* ScreenControllers */ = {
 			isa = PBXGroup;
 			children = (
 				545CEFFA2BEBA2E500F4EF46 /* HomeVC.swift */,
 				545CEFFE2BEBAB1E00F4EF46 /* SavedNewsVC.swift */,
 				545CF0002BEBAB2D00F4EF46 /* NewsDetailVC.swift */,
 			);
-			path = Screens;
+			path = ScreenControllers;
 			sourceTree = "<group>";
 		};
 		545CF0022BEBAB4800F4EF46 /* TabBarController */ = {
@@ -292,6 +329,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		544E11C02BF0401200EA90F2 /* AppCentChallange-2024Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 544E11C72BF0401200EA90F2 /* Build configuration list for PBXNativeTarget "AppCentChallange-2024Tests" */;
+			buildPhases = (
+				544E11BD2BF0401200EA90F2 /* Sources */,
+				544E11BE2BF0401200EA90F2 /* Frameworks */,
+				544E11BF2BF0401200EA90F2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				544E11C62BF0401200EA90F2 /* PBXTargetDependency */,
+			);
+			name = "AppCentChallange-2024Tests";
+			productName = "AppCentChallange-2024Tests";
+			productReference = 544E11C12BF0401200EA90F2 /* AppCentChallange-2024Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		545CEFDA2BEBA23700F4EF46 /* AppCentChallange-2024 */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 545CEFEF2BEBA23700F4EF46 /* Build configuration list for PBXNativeTarget "AppCentChallange-2024" */;
@@ -307,6 +362,8 @@
 			name = "AppCentChallange-2024";
 			packageProductDependencies = (
 				54557F6E2BEFB76500AF8799 /* Lottie */,
+				544E11B92BF0375800EA90F2 /* Alamofire */,
+				544E11BB2BF0375800EA90F2 /* AlamofireDynamic */,
 			);
 			productName = "AppCentChallange-2024";
 			productReference = 545CEFDB2BEBA23700F4EF46 /* AppCentChallange-2024.app */;
@@ -322,6 +379,10 @@
 				LastSwiftUpdateCheck = 1520;
 				LastUpgradeCheck = 1520;
 				TargetAttributes = {
+					544E11C02BF0401200EA90F2 = {
+						CreatedOnToolsVersion = 15.2;
+						TestTargetID = 545CEFDA2BEBA23700F4EF46;
+					};
 					545CEFDA2BEBA23700F4EF46 = {
 						CreatedOnToolsVersion = 15.2;
 					};
@@ -338,17 +399,26 @@
 			mainGroup = 545CEFD22BEBA23700F4EF46;
 			packageReferences = (
 				54557F6D2BEFB76400AF8799 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				544E11B82BF0375800EA90F2 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 545CEFDC2BEBA23700F4EF46 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				545CEFDA2BEBA23700F4EF46 /* AppCentChallange-2024 */,
+				544E11C02BF0401200EA90F2 /* AppCentChallange-2024Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		544E11BF2BF0401200EA90F2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		545CEFD92BEBA23700F4EF46 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -365,6 +435,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		544E11BD2BF0401200EA90F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				544E11CB2BF0413F00EA90F2 /* NetworkManager_Tests.swift in Sources */,
+				544E11C42BF0401200EA90F2 /* AppCentChallange_2024Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		545CEFD72BEBA23700F4EF46 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -402,6 +481,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		544E11C62BF0401200EA90F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 545CEFDA2BEBA23700F4EF46 /* AppCentChallange-2024 */;
+			targetProxy = 544E11C52BF0401200EA90F2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		545CEFE92BEBA23700F4EF46 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -414,6 +501,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		544E11C82BF0401200EA90F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NJ3YBT6N93;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mertcankirci.AppCentChallange-2024Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppCentChallange-2024.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AppCentChallange-2024";
+			};
+			name = Debug;
+		};
+		544E11C92BF0401200EA90F2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = NJ3YBT6N93;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mertcankirci.AppCentChallange-2024Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppCentChallange-2024.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AppCentChallange-2024";
+			};
+			name = Release;
+		};
 		545CEFED2BEBA23700F4EF46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -592,6 +715,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		544E11C72BF0401200EA90F2 /* Build configuration list for PBXNativeTarget "AppCentChallange-2024Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				544E11C82BF0401200EA90F2 /* Debug */,
+				544E11C92BF0401200EA90F2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		545CEFD62BEBA23700F4EF46 /* Build configuration list for PBXProject "AppCentChallange-2024" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -613,6 +745,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		544E11B82BF0375800EA90F2 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
 		54557F6D2BEFB76400AF8799 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
@@ -624,6 +764,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		544E11B92BF0375800EA90F2 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 544E11B82BF0375800EA90F2 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		544E11BB2BF0375800EA90F2 /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 544E11B82BF0375800EA90F2 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
 		54557F6E2BEFB76500AF8799 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 54557F6D2BEFB76400AF8799 /* XCRemoteSwiftPackageReference "lottie-spm" */;

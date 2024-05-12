@@ -74,7 +74,7 @@ class NewsDetailVC: UIViewController {
         descriptionLabel.numberOfLines = 10
         
         sourceView = ACCustomLabelItemView(symbolName: SFSymbols.source, labelText: article?.source?.name ?? "Unkown", color: .systemPink, textAlignment: .center)
-        dateView = ACCustomLabelItemView(symbolName: SFSymbols.date, labelText: NetworkManager.shared.formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .right)
+        dateView = ACCustomLabelItemView(symbolName: SFSymbols.date, labelText: UIHelper.formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .right)
         authorView = ACCustomLabelItemView(symbolName: SFSymbols.author, labelText: article.author ?? "Unknown", color: .systemPink, textAlignment: .left)
         
         safariButton = ACButton(backgroundColor: .systemPink, title: "View on Website")

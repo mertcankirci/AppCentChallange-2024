@@ -16,11 +16,12 @@ struct UIHelper {
         let width = view.bounds.width
         let padding: CGFloat = 32
         let availableWidth = width - (padding * 2) // Since we're creating a one column layout availableWidth equals itemWidth
+        let minimumSpacing: CGFloat = 16
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
         flowLayout.itemSize = CGSize(width: availableWidth, height: availableWidth * 0.75)
-        flowLayout.minimumLineSpacing = CGFloat(16)
+        flowLayout.minimumLineSpacing = minimumSpacing
         
         return flowLayout
     }
@@ -41,14 +42,20 @@ struct UIHelper {
         case .saved:
             messageString = "You didn't save any news. Lets go and save some ! 😇"
         }
+        
         if articles.isEmpty {
             DispatchQueue.main.async {
-                vc.presentLottieAnimation(with: messageString, in: vc.view, screenType: screen)
+                vc.presentEmptyStateLottieAnimation(with: messageString, in: vc.view, screenType: screen)
             }
         } else {
             DispatchQueue.main.async {
-                vc.dismissLottieAnimation()
+                vc.dismissEmptyStateLottieAnimation()
             }
         }
+    }
+    
+    static func formatDate(for date: String) -> String {
+        guard let formattedDate = date.convertToDate() else { return ""}
+        return formattedDate.convertToMonthYearDayFormat()
     }
 }

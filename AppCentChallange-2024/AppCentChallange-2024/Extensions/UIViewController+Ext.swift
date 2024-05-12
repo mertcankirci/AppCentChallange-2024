@@ -23,7 +23,7 @@ extension UIViewController {
         }
     }
     
-    func presentLottieAnimation(with message: String, in view: UIView, screenType: EmptyStateScreen) {
+    func presentEmptyStateLottieAnimation(with message: String, in view: UIView, screenType: EmptyStateScreen) {
         if let _ = emptyLottieAnimationView {
             emptyLottieAnimationView?.removeFromSuperview()
             emptyLottieAnimationView = nil
@@ -33,7 +33,7 @@ extension UIViewController {
         view.addSubview(emptyLottieAnimationView!)
     }
     
-    func dismissLottieAnimation() {
+    func dismissEmptyStateLottieAnimation() {
         if emptyLottieAnimationView != nil {
             DispatchQueue.main.async {
                 emptyLottieAnimationView?.removeFromSuperview()
