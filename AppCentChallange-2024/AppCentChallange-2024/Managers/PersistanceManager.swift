@@ -36,7 +36,7 @@ enum PersistanceManager {
                     retrievedSaved.removeAll(where: { $0.title == article.title } )
                 }
                 
-                completed(saveFavorites(articles: retrievedSaved))
+                completed(saveArticles(articles: retrievedSaved))
                 
             case .failure(let error):
                 completed(error)
@@ -60,7 +60,7 @@ enum PersistanceManager {
         }
     }
     
-    static func saveFavorites(articles: [Article]) -> ACError? {
+    static func saveArticles(articles: [Article]) -> ACError? {
         do {
             let encoder = JSONEncoder()
             let encodedSaved = try encoder.encode(articles)

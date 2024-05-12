@@ -58,4 +58,17 @@ struct UIHelper {
         guard let formattedDate = date.convertToDate() else { return ""}
         return formattedDate.convertToMonthYearDayFormat()
     }
+    
+    
+    //MARK: Remove the '[+???] characters' part from the article content if it exists. For UI purposes.
+    static func removeTrailingPlusFromContent(from text: String) -> String {
+        do {
+            // '//[+'means starts with this pattern and '.*$' till at the end of the string.
+            let regex = try NSRegularExpression(pattern: "\\[+.*$", options: [])
+            let range = NSRange(location: 0, length: text.utf16.count)
+            return regex.stringByReplacingMatches(in: text, options: [], range: range, withTemplate: "For more view on website.")
+        } catch {
+            return text
+        }
+    }
 }

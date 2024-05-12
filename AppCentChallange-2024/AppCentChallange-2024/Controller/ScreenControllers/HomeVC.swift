@@ -23,7 +23,6 @@ class HomeVC: UIViewController {
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Article>!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
@@ -104,6 +103,7 @@ class HomeVC: UIViewController {
                 if articles.isEmpty {
                     if page > 1 {
                         presentACAlertOnMainThread(title: "End of news", message: "You've reached at the end of the news. 😎", buttonTitle: "Ok")
+                        return
                     } else {
                         presentACAlertOnMainThread(title: "No news", message: "Unforunately there we couldn't find any news for this keyword. 🥲", buttonTitle: "Ok")
                     }
@@ -195,8 +195,6 @@ extension HomeVC: UICollectionViewDelegate {
 }
 
 extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate, UISearchControllerDelegate {
-
-    
     func updateSearchResults(for searchController: UISearchController) { }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

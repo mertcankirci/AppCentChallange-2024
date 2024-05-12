@@ -19,7 +19,7 @@ class NewsDetailVC: UIViewController {
     var shareButton: UIBarButtonItem!
     var newsImageView: ACNewsImageView!
     var titleLabel: ACTitleLabel!
-    var descriptionLabel: ACBodyLabel!
+    var contentLabel: ACBodyLabel!
     var sourceView: ACCustomLabelItemView!
     var dateView: ACCustomLabelItemView!
     var authorView: ACCustomLabelItemView!
@@ -69,9 +69,9 @@ class NewsDetailVC: UIViewController {
         titleLabel.text = article.title
         titleLabel.numberOfLines = 3
         
-        descriptionLabel = ACBodyLabel(textAlignment: .left)
-        descriptionLabel.text = article.description
-        descriptionLabel.numberOfLines = 10
+        contentLabel = ACBodyLabel(textAlignment: .left)
+        contentLabel.text = UIHelper.removeTrailingPlusFromContent(from: article.content ?? "This article hasn't got any content")
+        contentLabel.numberOfLines = 10
         
         sourceView = ACCustomLabelItemView(symbolName: SFSymbols.source, labelText: article?.source?.name ?? "Unkown", color: .systemPink, textAlignment: .center)
         dateView = ACCustomLabelItemView(symbolName: SFSymbols.date, labelText: UIHelper.formatDate(for: article?.publishedAt ?? "Unkown"), color: .systemPink, textAlignment: .right)
@@ -82,7 +82,7 @@ class NewsDetailVC: UIViewController {
         
         view.addSubview(newsImageView)
         view.addSubview(titleLabel)
-        view.addSubview(descriptionLabel)
+        view.addSubview(contentLabel)
         view.addSubview(dateView)
         view.addSubview(sourceView)
         view.addSubview(authorView)
@@ -116,10 +116,10 @@ class NewsDetailVC: UIViewController {
             titleLabel.leadingAnchor.constraint(equalTo: newsImageView.leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: newsImageView.trailingAnchor, constant: -(2 * padding)),
             
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: padding),
-            descriptionLabel.leadingAnchor.constraint(equalTo: newsImageView.leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: newsImageView.trailingAnchor),
-            descriptionLabel.heightAnchor.constraint(lessThanOrEqualToConstant: height * 0.35),
+            contentLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: padding),
+            contentLabel.leadingAnchor.constraint(equalTo: newsImageView.leadingAnchor),
+            contentLabel.trailingAnchor.constraint(equalTo: newsImageView.trailingAnchor),
+            contentLabel.heightAnchor.constraint(lessThanOrEqualToConstant: height * 0.35),
             
             safariButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -padding / 2),
             safariButton.leadingAnchor.constraint(equalTo: newsImageView.leadingAnchor, constant: 2 * padding),

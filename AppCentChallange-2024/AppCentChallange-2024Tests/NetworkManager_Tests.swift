@@ -22,7 +22,7 @@ class NetworkManagerTests: XCTestCase {
         try super.tearDownWithError()
     }
     
-    func testGetNews_SuccessfulResponse() {
+    func testGetNewsSuccessfulResponse() {
         let expectation = XCTestExpectation(description: "Fetched news data successfully.")
         let query = "technology"
         let page = 1
@@ -41,7 +41,7 @@ class NetworkManagerTests: XCTestCase {
         wait(for: [expectation], timeout: 5)
     }
     
-    func testGetNews_InvalidQuery() {
+    func testGetNewsInvalidQuery() {
         let expectation = XCTestExpectation(description: "Expected failure fulfilled.")
         let query = ""
         let page = 1
@@ -51,7 +51,7 @@ class NetworkManagerTests: XCTestCase {
             case .success(_):
                 XCTFail("Expected failure due to invalid query")
             case .failure(let error):
-                XCTAssertEqual(error, .invalidResponse)
+                XCTAssertEqual(error, .invalidQuery)
                 expectation.fulfill()
             }
         }
@@ -59,11 +59,18 @@ class NetworkManagerTests: XCTestCase {
         wait(for: [expectation], timeout: 5)
     }
 
-    func testGetNews_Performance() {
+    func testGetNewsPerformance() {
         let query = "technology"
         let page = 1
         
-        self.measure {
+        self.measure(
+            metrics: [
+              XCTClockMetric(),
+              XCTCPUMetric(),
+              XCTStorageMetric(),
+              XCTMemoryMetric()
+            ]
+        ) {
             sut.getNews(for: query, page: page) { _ in
                 
             }

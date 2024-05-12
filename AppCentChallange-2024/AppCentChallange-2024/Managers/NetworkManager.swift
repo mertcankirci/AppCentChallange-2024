@@ -40,10 +40,10 @@ class NetworkManager {
                     case 500...599:
                         completed(.failure(.unableToComplete))
                     default:
-                        completed(.failure(.invalidResponse))
+                        completed(.failure(.invalidData))
                     }
                 } else {
-                    completed(.failure(.invalidData))
+                    completed(.failure(.invalidResponse))
                 }
             }
         }
