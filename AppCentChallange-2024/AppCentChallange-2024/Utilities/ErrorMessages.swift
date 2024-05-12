@@ -14,5 +14,6 @@ enum ACError: String, Error {
     case invalidData = "The data received from the server was invalid. Please try again"
     case unableToSave = "There was an error. Please try again."
     case alreadyInSaved = "You've already saved this article."
+    case tooManyRequests = "You've made too many requests in a short time, please wait for a bit. 😇"
 }
 

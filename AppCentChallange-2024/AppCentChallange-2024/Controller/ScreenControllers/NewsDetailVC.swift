@@ -184,6 +184,7 @@ class NewsDetailVC: UIViewController {
             return
         }
         guard let url = URL(string: urlString) else { presentACAlertOnMainThread(title: "Invalid URL", message: "The url attached to this user is invalid", buttonTitle: "Ok")
+            presentACAlertOnMainThread(title: "Error", message: "Corrupted URL", buttonTitle: "Ok")
             return
             }
         presentSafariVC(with: url)

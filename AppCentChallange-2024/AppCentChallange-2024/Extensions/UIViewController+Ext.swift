@@ -45,7 +45,9 @@ extension UIViewController {
     func presentSafariVC(with url: URL) {
         let safariVC = SFSafariViewController(url: url)
         safariVC.preferredControlTintColor = .systemPink
-        present(safariVC, animated: true)
+        safariVC.navigationItem.backButtonTitle = "Back"
+        safariVC.title = "News Source"
+        navigationController?.pushViewController(safariVC, animated: true)
     }
     
     func showLoadingView() {

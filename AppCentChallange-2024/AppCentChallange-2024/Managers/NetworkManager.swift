@@ -15,7 +15,7 @@ class NetworkManager {
     private let apiKey2 = "413e3cb8905240bfa14bc5de86c216ca"
     let cache = NSCache<NSString, UIImage>()
     
-    private init () {}
+    private init () { }
     
     func getNews(for query: String, page: Int, completed: @escaping(Result<NewsResponse, ACError>) -> Void) {
         
@@ -36,7 +36,11 @@ class NetworkManager {
                 if let statusCode = response.response?.statusCode {
                     switch statusCode {
                     case 400...499:
-                        completed(.failure(.invalidQuery))
+                        if statusCode == 429 {
+                            completed(.failure(.tooManyRequests))
+                        } else {
+                            completed(.failure(.invalidQuery))
+                        }
                     case 500...599:
                         completed(.failure(.unableToComplete))
                     default:
