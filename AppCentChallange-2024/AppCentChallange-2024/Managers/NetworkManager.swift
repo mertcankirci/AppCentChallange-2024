@@ -18,39 +18,34 @@ class NetworkManager {
     private init () {}
     
     func getNews(for query: String, page: Int, completed: @escaping(Result<NewsResponse, ACError>) -> Void) {
-
+        
         let endPoint = baseURL + "\(query)&page=\(page)&apiKey=\(apiKey)"
-        #if DEBUG
-        print(endPoint)
-        #endif
+        
         guard let url = URL(string: endPoint) else {
             completed(.failure(.invalidQuery))
             return
         }
         
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let _ = error {
-                completed(.failure(.unableToComplete))
-                return
-            }
-            
-            guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
-                completed(.failure(.invalidResponse))
-                return
-            }
-            guard let data = data else {
-                completed(.failure(.invalidData))
-                return
-            }
-
-            do {
-                let decoder = JSONDecoder()
-                let news = try decoder.decode(NewsResponse.self, from: data)
+    //MARK: I'm aware that Alamofire has its own Error class, but I want to show custom errors that I've created to the user. That's why I followed this approach.
+        
+        AF.request(url, method: .get).validate().responseDecodable(of: NewsResponse.self) { response in
+            switch response.result {
+            case .success(let news):
                 completed(.success(news))
-            } catch {
-                completed(.failure(.invalidData))
+            case .failure(_):
+                if let statusCode = response.response?.statusCode {
+                    switch statusCode {
+                    case 400...499:
+                        completed(.failure(.invalidQuery))
+                    case 500...599:
+                        completed(.failure(.unableToComplete))
+                    default:
+                        completed(.failure(.invalidResponse))
+                    }
+                } else {
+                    completed(.failure(.invalidData))
+                }
             }
         }
-        task.resume()
     }
 }
