@@ -6,14 +6,12 @@
 //
 
 import UIKit
-import SafariServices
 import Lottie
 
 fileprivate var containerView: UIView!
 fileprivate var emptyLottieAnimationView: ACLottieEmptyStateView?
 
 extension UIViewController {
-    
     func presentACAlertOnMainThread(title: String, message: String, buttonTitle: String) {
         DispatchQueue.main.async {
             let alertVC = ACAlertVC(alertTitle: title, message: message, buttonTitle: buttonTitle)
@@ -28,6 +26,7 @@ extension UIViewController {
             emptyLottieAnimationView?.removeFromSuperview()
             emptyLottieAnimationView = nil
         }
+        
         emptyLottieAnimationView = ACLottieEmptyStateView(message: message, for: screenType)
         emptyLottieAnimationView!.frame = view.bounds
         view.addSubview(emptyLottieAnimationView!)
@@ -45,7 +44,6 @@ extension UIViewController {
     func showLoadingView() {
         containerView = UIView(frame: view.bounds)
         view.addSubview(containerView)
-        
         containerView.backgroundColor = .black
         containerView.alpha = 0
         
@@ -53,6 +51,7 @@ extension UIViewController {
         
         let activityIndicatior = UIActivityIndicatorView(style: .large)
         activityIndicatior.color = .systemPink
+        
         containerView.addSubview(activityIndicatior)
         
         activityIndicatior.translatesAutoresizingMaskIntoConstraints = false

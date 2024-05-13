@@ -18,14 +18,14 @@ class SavedNewsVC: UIViewController {
     var dataSource: UICollectionViewDiffableDataSource<Section, Article>!
     var deleteButton: UIBarButtonItem!
     var article: Article? = nil
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
         configureDataSource()
         configureVC()
         retrieveSaved()
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,10 +54,10 @@ class SavedNewsVC: UIViewController {
         collectionView.backgroundColor = .secondarySystemBackground
         collectionView.showsVerticalScrollIndicator = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        
         view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -75,6 +75,7 @@ class SavedNewsVC: UIViewController {
             cell.set(article: news)
             cell.minusButtonDelegate = self
             cell.minusButton.isHidden = true
+            
             return cell
         })
     }
@@ -88,6 +89,7 @@ class SavedNewsVC: UIViewController {
     
     func retrieveSaved() {
         PersistanceManager.retrieveSaved { [weak self] result in
+            
             guard let self = self else { return }
             
             switch result {
@@ -99,6 +101,7 @@ class SavedNewsVC: UIViewController {
                 self.presentACAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
             }
         }
+        
         updateData(on: self.articles ?? [])
     }
     
@@ -109,12 +112,12 @@ class SavedNewsVC: UIViewController {
                 newsCell.minusButton.isHidden = !collectionView.isEditing
             }
         }
+        
         deleteButton.image = UIImage(systemName: collectionView.isEditing ? SFSymbols.endEdit : SFSymbols.edit)
     }
 }
 
-extension SavedNewsVC: UICollectionViewDelegate { 
-    
+extension SavedNewsVC: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let articles = articles else { return }
         let article = articles[indexPath.item]
@@ -126,41 +129,40 @@ extension SavedNewsVC: UICollectionViewDelegate {
         destinationVC.delegate = self
         navigationController?.pushViewController(destinationVC, animated: true)
     }
-    
 }
 
 extension SavedNewsVC: NewsCellDelegate {
     func minusButtonTapped(for article: Article) {
-            PersistanceManager.updateWith(article: article, actionType: .remove) { [weak self] error in
-                guard let self = self else { return }
-                guard let error = error else {
+        PersistanceManager.updateWith(article: article, actionType: .remove) { [weak self] error in
+            guard let self = self else { return }
+            guard let error = error else {
+                
         //MARK: I'm checking if there's only one element in the articles array because if it's the last one, It cancels animation and shows the empty state view. To prevent this, I'm using the count of the array to determine whether to show the animation to the user using the asyncAfter method.
+                let isLast = self.articles?.count == 1
+                
+                self.articles?.removeAll(where: { $0.title == article.title })
+                updateData(on: self.articles ?? [])
+                
+                guard let articles = self.articles else { return }
+                
+                if isLast {
+        //MARK: For changing edit button image and adjusting collection view because news are empty.
+                    deleteButton.image = UIImage(systemName: SFSymbols.edit)
+                    collectionView.isEditing.toggle()
                     
-                    let isLast = self.articles?.count == 1
+                    showLottiePersistanceAnimation(for: .remove)
                     
-                    self.articles?.removeAll(where: { $0.title == article.title })
-                    updateData(on: self.articles ?? [])
-                    
-                    guard let articles = self.articles else { return }
-
-                    if isLast {
-                        //MARK: For changing edit button image and adjusting collection view because news are empty.
-                        
-                        deleteButton.image = UIImage(systemName: SFSymbols.edit)
-                        collectionView.isEditing.toggle()
-                        
-                        showLottiePersistanceAnimation(for: .remove)
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
-                            UIHelper.emptyStateViewHelper(in: self, articles: articles, screen: .saved) //Here waiting for unsave animation to finish.
-                        }
-                    } else {
-                        showLottiePersistanceAnimation(for: .remove)
-                        UIHelper.emptyStateViewHelper(in: self, articles: articles, screen: .saved)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
+                        UIHelper.emptyStateViewHelper(in: self, articles: articles, screen: .saved) //Here waiting for unsave animation to finish.
                     }
-                    return
+                } else {
+                    showLottiePersistanceAnimation(for: .remove)
+                    UIHelper.emptyStateViewHelper(in: self, articles: articles, screen: .saved)
                 }
-                self.presentACAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+                return
             }
+            self.presentACAlertOnMainThread(title: "Something went wrong", message: error.rawValue, buttonTitle: "Ok")
+        }
     }
 }
 

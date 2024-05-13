@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+//MARK: Designing a custom view for displaying an icon and text within a cell.
 class ACCustomLabelItemView: UIView {
     
     var imageView: UIImageView

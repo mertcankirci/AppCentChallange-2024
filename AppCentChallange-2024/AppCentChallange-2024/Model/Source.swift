@@ -8,6 +8,7 @@
 import Foundation
 
 struct Source: Codable, Hashable {
+//MARK: I added UUID() and implemented hash functions because the source IDs coming from the API can sometimes be nil, which can cause issues in the collection view data source. I wrote hash functions to ensure they conform to Hashable.
     let uuid = UUID()
     
     private enum CodingKeys: String, CodingKey { case id, name }

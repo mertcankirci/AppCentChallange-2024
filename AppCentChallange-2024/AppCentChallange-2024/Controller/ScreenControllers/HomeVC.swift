@@ -19,6 +19,8 @@ class HomeVC: UIViewController {
     var page: Int = 1
     var contentHeight: Double? = nil
     var deleteButton: UIBarButtonItem!
+    var sortingOptionsButton: UIBarButtonItem!
+    
     
     var collectionView: UICollectionView!
     var dataSource: UICollectionViewDiffableDataSource<Section, Article>!
@@ -40,7 +42,10 @@ class HomeVC: UIViewController {
         view.backgroundColor = .secondarySystemBackground
         deleteButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(deleteButtonTapped))
         deleteButton.tintColor = .systemPink
-        navigationItem.rightBarButtonItem = deleteButton
+        
+        sortingOptionsButton = UIBarButtonItem(image: UIImage(systemName: SFSymbols.sortingOptions), style: .done, target: self, action: #selector(sortingOptionsButtonTapped))
+        sortingOptionsButton.tintColor = .systemPink
+        navigationItem.rightBarButtonItems = [deleteButton, sortingOptionsButton]
     }
     
     func configureCollectionView() {
@@ -92,6 +97,7 @@ class HomeVC: UIViewController {
     
     func getNews(query: String) {
         showLoadingView()
+        
         NetworkManager.shared.getNews(for: query, page: page) { [weak self] result in
             guard let self = self else { return }
             
@@ -100,9 +106,11 @@ class HomeVC: UIViewController {
                 self.dismissLoadingView()
                 
                 guard let articles = success.articles else { return }
+                
                 if articles.isEmpty {
                     if page > 1 {
                         presentACAlertOnMainThread(title: "End of news", message: "You've reached at the end of the news. 😎", buttonTitle: "Ok")
+                        page -= 1
                         return
                     } else {
                         presentACAlertOnMainThread(title: "No news", message: "Unforunately there we couldn't find any news for this keyword. 🥲", buttonTitle: "Ok")
@@ -113,10 +121,6 @@ class HomeVC: UIViewController {
                 self.news.append(contentsOf: articles)
                 
                 UIHelper.emptyStateViewHelper(in: self, articles: news, screen: .home)
-                
-                if #available(iOS 16.0, *) {
-                    deleteButton.isHidden = self.news.isEmpty
-                }
                 
                 self.updateData(on: news)
                 
@@ -149,12 +153,19 @@ class HomeVC: UIViewController {
         }
     }
     
+    @objc func sortingOptionsButtonTapped() {
+        let destVC = SortingOptionsVC()
+        destVC.delegate = self
+        self.present(destVC, animated: true)
+    }
+    
     private func transitionAnimation() -> CATransition {
         let transition = CATransition()
         transition.duration = 0.3
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
         transition.type = CATransitionType.fade
         transition.subtype = CATransitionSubtype.fromBottom
+        
         return transition
     }
     
@@ -209,6 +220,22 @@ extension HomeVC: UISearchResultsUpdating, UISearchBarDelegate, UISearchControll
         self.title = "Searching for: \(query)"
         self.tabBarItem.title = "Home"
         navigationItem.searchController?.isActive = false
+    }
+}
+
+extension HomeVC: SortingOptionsVCDelegate {
+    func didSelectSortingOption(with: SortingOptions) {
+        NetworkManager.shared.sortingOption = with
+        
+        guard let query = query else { return }
+        
+        if !news.isEmpty {
+            DispatchQueue.main.async {
+                self.news.removeAll()
+            }
+            page = 1
+            getNews(query: query)
+        }
     }
 }
 

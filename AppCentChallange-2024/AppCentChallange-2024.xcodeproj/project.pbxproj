@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		543D152B2BF133F8009C1426 /* PersistanceManager_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543D152A2BF133F8009C1426 /* PersistanceManager_Tests.swift */; };
+		543D15322BF26589009C1426 /* SortingOptionsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543D15312BF26589009C1426 /* SortingOptionsVC.swift */; };
+		543D15342BF269D5009C1426 /* SortingOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543D15332BF269D5009C1426 /* SortingOptionCell.swift */; };
 		544E11B42BF018EA00EA90F2 /* lottie-saved.json in Resources */ = {isa = PBXBuildFile; fileRef = 544E11B32BF018EA00EA90F2 /* lottie-saved.json */; };
 		544E11B62BF01E1A00EA90F2 /* lottie-unsaved.json in Resources */ = {isa = PBXBuildFile; fileRef = 544E11B52BF01E1A00EA90F2 /* lottie-unsaved.json */; };
 		544E11BA2BF0375800EA90F2 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 544E11B92BF0375800EA90F2 /* Alamofire */; };
@@ -61,6 +63,8 @@
 
 /* Begin PBXFileReference section */
 		543D152A2BF133F8009C1426 /* PersistanceManager_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager_Tests.swift; sourceTree = "<group>"; };
+		543D15312BF26589009C1426 /* SortingOptionsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingOptionsVC.swift; sourceTree = "<group>"; };
+		543D15332BF269D5009C1426 /* SortingOptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortingOptionCell.swift; sourceTree = "<group>"; };
 		544E11B32BF018EA00EA90F2 /* lottie-saved.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-saved.json"; sourceTree = "<group>"; };
 		544E11B52BF01E1A00EA90F2 /* lottie-unsaved.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-unsaved.json"; sourceTree = "<group>"; };
 		544E11C12BF0401200EA90F2 /* AppCentChallange-2024Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AppCentChallange-2024Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -274,6 +278,7 @@
 				545CEFFA2BEBA2E500F4EF46 /* HomeVC.swift */,
 				545CEFFE2BEBAB1E00F4EF46 /* SavedNewsVC.swift */,
 				545CF0002BEBAB2D00F4EF46 /* NewsDetailVC.swift */,
+				543D15312BF26589009C1426 /* SortingOptionsVC.swift */,
 			);
 			path = ScreenControllers;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				545CF0182BEBE40B00F4EF46 /* NewsCell.swift */,
+				543D15332BF269D5009C1426 /* SortingOptionCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -461,6 +467,7 @@
 				545CF01F2BEBE89200F4EF46 /* ACTitleLabel.swift in Sources */,
 				545CF0212BEBE8C000F4EF46 /* ACSecondaryTitleLabel.swift in Sources */,
 				545CF0012BEBAB2D00F4EF46 /* NewsDetailVC.swift in Sources */,
+				543D15342BF269D5009C1426 /* SortingOptionCell.swift in Sources */,
 				545CF0252BEBE91D00F4EF46 /* ACBodyLabel.swift in Sources */,
 				545CF0042BEBAB5F00F4EF46 /* ACTabBarController.swift in Sources */,
 				54557F7A2BEFDCCF00AF8799 /* Constants.swift in Sources */,
@@ -474,6 +481,7 @@
 				545CF01C2BEBE68400F4EF46 /* ACNewsImageView.swift in Sources */,
 				54F988062BEC113E0025C04C /* String+Ext.swift in Sources */,
 				545CF0192BEBE40B00F4EF46 /* NewsCell.swift in Sources */,
+				543D15322BF26589009C1426 /* SortingOptionsVC.swift in Sources */,
 				545CEFDF2BEBA23700F4EF46 /* AppDelegate.swift in Sources */,
 				545CEFE12BEBA23700F4EF46 /* SceneDelegate.swift in Sources */,
 				545CF0092BEBAFDE00F4EF46 /* UIHelper.swift in Sources */,

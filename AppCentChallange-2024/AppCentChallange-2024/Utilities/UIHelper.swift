@@ -20,7 +20,7 @@ struct UIHelper {
         
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-        flowLayout.itemSize = CGSize(width: availableWidth, height: availableWidth * 0.75)
+        flowLayout.itemSize = CGSize(width: availableWidth, height: availableWidth * 0.8)
         flowLayout.minimumLineSpacing = minimumSpacing
         
         return flowLayout
@@ -66,9 +66,21 @@ struct UIHelper {
             // '//[+'means starts with this pattern and '.*$' till at the end of the string.
             let regex = try NSRegularExpression(pattern: "\\[+.*$", options: [])
             let range = NSRange(location: 0, length: text.utf16.count)
+            
             return regex.stringByReplacingMatches(in: text, options: [], range: range, withTemplate: "For more view on website.")
         } catch {
             return text
+        }
+    }
+    
+    static func getStringForsortingOption(for option: SortingOptions) -> String {
+        switch option {
+        case .relevancy:
+            return "Relevant"
+        case .popularity:
+            return "Popularity"
+        case .publishedAt:
+            return "Publish Date"
         }
     }
 }

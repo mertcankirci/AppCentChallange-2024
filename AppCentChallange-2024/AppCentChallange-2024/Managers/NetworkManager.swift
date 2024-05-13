@@ -13,13 +13,19 @@ class NetworkManager {
     private let baseURL = "https://newsapi.org/v2/everything?q="
     private let apiKey = "df0425863c604827a5f5ef4eef003db2"
     private let apiKey2 = "413e3cb8905240bfa14bc5de86c216ca"
+    var sortingOption: SortingOptions? = .publishedAt
     let cache = NSCache<NSString, UIImage>()
     
     private init () { }
     
     func getNews(for query: String, page: Int, completed: @escaping(Result<NewsResponse, ACError>) -> Void) {
+        var endPoint: String = ""
         
-        let endPoint = baseURL + "\(query)&page=\(page)&apiKey=\(apiKey)"
+        if let sortingOption = sortingOption {
+            endPoint = baseURL + "\(query)&page=\(page)&sortBy=\(sortingOption.rawValue)&apiKey=\(apiKey)"
+        } else {
+            endPoint = baseURL + "\(query)&page=\(page)&apiKey=\(apiKey)"
+        }
         
         guard let url = URL(string: endPoint) else {
             completed(.failure(.invalidQuery))
@@ -27,7 +33,6 @@ class NetworkManager {
         }
         
     //MARK: I'm aware that Alamofire has its own Error class, but I want to show custom errors that I've created to the user. That's why I followed this approach.
-        
         AF.request(url, method: .get).validate().responseDecodable(of: NewsResponse.self) { response in
             switch response.result {
             case .success(let news):

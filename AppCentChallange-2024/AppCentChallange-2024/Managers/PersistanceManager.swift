@@ -37,7 +37,6 @@ enum PersistanceManager {
                 }
                 
                 completed(saveArticles(articles: retrievedSaved))
-                
             case .failure(let error):
                 completed(error)
             }
@@ -46,7 +45,7 @@ enum PersistanceManager {
     
     static func retrieveSaved(completed: @escaping(Result<[Article], ACError>) -> Void) {
         guard let savedData = defaults.object(forKey: Keys.saved) as? Data else {
-            //First time trying to access/
+    //MARK: Users first time trying to access saved news.
             completed(.success([]))
             return
         }
@@ -54,6 +53,7 @@ enum PersistanceManager {
         do {
             let decoder = JSONDecoder()
             let articles = try decoder.decode([Article].self, from: savedData)
+            
             completed(.success(articles))
         } catch {
             completed(.failure(.unableToSave))
@@ -83,7 +83,6 @@ enum PersistanceManager {
                     completed(.success(false))
                     return
                 }
-                
             case .failure(let error):
                 completed(.failure(error))
             }

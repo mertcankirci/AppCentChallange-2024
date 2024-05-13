@@ -176,10 +176,6 @@ class NewsDetailVC: UIViewController {
         navigationController?.pushViewController(safariVC, animated: true)
     }
     
-    @objc func backButtonTapped() {
-        navigationController?.popViewController(animated: true)
-    }
-    
     @objc func shareButtonTapped() {
         let shareText = """
         Look at this article !
@@ -197,10 +193,12 @@ class NewsDetailVC: UIViewController {
             presentACAlertOnMainThread(title: "Error", message: "This news source doesnt exist", buttonTitle: "Ok")
             return
         }
+        
         guard let url = URL(string: urlString) else { presentACAlertOnMainThread(title: "Invalid URL", message: "The url attached to this user is invalid", buttonTitle: "Ok")
             presentACAlertOnMainThread(title: "Error", message: "Corrupted URL", buttonTitle: "Ok")
             return
             }
+        
         presentSafariVC(with: url)
     }
 }

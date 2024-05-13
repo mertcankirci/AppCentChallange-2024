@@ -57,7 +57,7 @@ class NewsCell: UICollectionViewCell {
         minusButton.tintColor = .systemPink
         minusButton.translatesAutoresizingMaskIntoConstraints = false
         minusButton.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
-        
+
         titleLabel = ACTitleLabel(textAlignment: .left, fontSize: 18)
         titleLabel.numberOfLines = 2
         
@@ -80,9 +80,9 @@ class NewsCell: UICollectionViewCell {
         let width = bounds.width
         
         NSLayoutConstraint.activate([
-            newsImageView.topAnchor.constraint(equalTo: topAnchor, constant: 4),
-            newsImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 4),
-            newsImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -4),
+            newsImageView.topAnchor.constraint(equalTo: topAnchor, constant: padding / 2),
+            newsImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: padding / 2),
+            newsImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -padding / 2),
             newsImageView.heightAnchor.constraint(equalToConstant: width * 0.45),
             
             sourceView.topAnchor.constraint(equalTo: newsImageView.bottomAnchor, constant: padding),
@@ -102,10 +102,10 @@ class NewsCell: UICollectionViewCell {
             descriptionLabel.trailingAnchor.constraint(equalTo: dateView.trailingAnchor),
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -padding),
             
-            minusButton.topAnchor.constraint(equalTo: newsImageView.topAnchor, constant: 4),
-            minusButton.trailingAnchor.constraint(equalTo: newsImageView.trailingAnchor, constant: -4),
-            minusButton.widthAnchor.constraint(equalToConstant: 20),
-            minusButton.heightAnchor.constraint(equalToConstant: 20)
+            minusButton.topAnchor.constraint(equalTo: newsImageView.topAnchor, constant: padding / 2),
+            minusButton.trailingAnchor.constraint(equalTo: newsImageView.trailingAnchor, constant: -padding / 2),
+            minusButton.widthAnchor.constraint(equalToConstant: 40),
+            minusButton.heightAnchor.constraint(equalToConstant: 40)
             
         ])
     }
