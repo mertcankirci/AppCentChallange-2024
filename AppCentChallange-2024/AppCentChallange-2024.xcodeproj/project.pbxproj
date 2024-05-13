@@ -14,7 +14,7 @@
 		544E11B62BF01E1A00EA90F2 /* lottie-unsaved.json in Resources */ = {isa = PBXBuildFile; fileRef = 544E11B52BF01E1A00EA90F2 /* lottie-unsaved.json */; };
 		544E11C42BF0401200EA90F2 /* AppCentChallange_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544E11C32BF0401200EA90F2 /* AppCentChallange_2024Tests.swift */; };
 		544E11CB2BF0413F00EA90F2 /* NetworkManager_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544E11CA2BF0413F00EA90F2 /* NetworkManager_Tests.swift */; };
-		54557F6F2BEFB76500AF8799 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 54557F6E2BEFB76500AF8799 /* Lottie */; };
+		54557F6F2BEFB76500AF8799 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 54557F6E2BEFB76500AF8799 /* Lottie */; settings = {ATTRIBUTES = (Required, ); }; };
 		54557F732BEFBA2900AF8799 /* ACLottieEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54557F722BEFBA2900AF8799 /* ACLottieEmptyStateView.swift */; };
 		54557F762BEFC04E00AF8799 /* lottie-empty-home.json in Resources */ = {isa = PBXBuildFile; fileRef = 54557F742BEFC04E00AF8799 /* lottie-empty-home.json */; };
 		54557F772BEFC04E00AF8799 /* lottie-empty-saved.json in Resources */ = {isa = PBXBuildFile; fileRef = 54557F752BEFC04E00AF8799 /* lottie-empty-saved.json */; };
@@ -40,6 +40,8 @@
 		545CF0212BEBE8C000F4EF46 /* ACSecondaryTitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545CF0202BEBE8C000F4EF46 /* ACSecondaryTitleLabel.swift */; };
 		545CF0232BEBE8E900F4EF46 /* ACSecondaryBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545CF0222BEBE8E900F4EF46 /* ACSecondaryBodyLabel.swift */; };
 		545CF0252BEBE91D00F4EF46 /* ACBodyLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545CF0242BEBE91D00F4EF46 /* ACBodyLabel.swift */; };
+		54C4479E2BF293AA00B50D87 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 54C4479D2BF293AA00B50D87 /* Lottie */; };
+		54D38A3D2BF29F130028302A /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 54D38A3C2BF29F130028302A /* Alamofire */; };
 		54F988042BEC112F0025C04C /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F988032BEC112F0025C04C /* Date+Ext.swift */; };
 		54F988062BEC113E0025C04C /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F988052BEC113E0025C04C /* String+Ext.swift */; };
 		54F988082BEC16DE0025C04C /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F988072BEC16DE0025C04C /* UIViewController+Ext.swift */; };
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54C4479E2BF293AA00B50D87 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,6 +120,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54557F6F2BEFB76500AF8799 /* Lottie in Frameworks */,
+				54D38A3D2BF29F130028302A /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +352,9 @@
 				544E11C62BF0401200EA90F2 /* PBXTargetDependency */,
 			);
 			name = "AppCentChallange-2024Tests";
+			packageProductDependencies = (
+				54C4479D2BF293AA00B50D87 /* Lottie */,
+			);
 			productName = "AppCentChallange-2024Tests";
 			productReference = 544E11C12BF0401200EA90F2 /* AppCentChallange-2024Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -367,6 +374,7 @@
 			name = "AppCentChallange-2024";
 			packageProductDependencies = (
 				54557F6E2BEFB76500AF8799 /* Lottie */,
+				54D38A3C2BF29F130028302A /* Alamofire */,
 			);
 			productName = "AppCentChallange-2024";
 			productReference = 545CEFDB2BEBA23700F4EF46 /* AppCentChallange-2024.app */;
@@ -402,7 +410,7 @@
 			mainGroup = 545CEFD22BEBA23700F4EF46;
 			packageReferences = (
 				54557F6D2BEFB76400AF8799 /* XCRemoteSwiftPackageReference "lottie-spm" */,
-				5465FC4F2BF28FDD006362D4 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				54D38A3B2BF29F130028302A /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 545CEFDC2BEBA23700F4EF46 /* Products */;
 			projectDirPath = "";
@@ -675,6 +683,7 @@
 		545CEFF02BEBA23700F4EF46 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -708,6 +717,7 @@
 		545CEFF12BEBA23700F4EF46 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
@@ -779,7 +789,7 @@
 				minimumVersion = 4.4.3;
 			};
 		};
-		5465FC4F2BF28FDD006362D4 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		54D38A3B2BF29F130028302A /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
 			requirement = {
@@ -794,6 +804,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 54557F6D2BEFB76400AF8799 /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
+		};
+		54C4479D2BF293AA00B50D87 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54557F6D2BEFB76400AF8799 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
+		54D38A3C2BF29F130028302A /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 54D38A3B2BF29F130028302A /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
