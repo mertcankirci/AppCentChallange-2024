@@ -76,7 +76,7 @@ struct UIHelper {
     static func getStringForsortingOption(for option: SortingOptions) -> String {
         switch option {
         case .relevancy:
-            return "Relevant"
+            return "Relevancy"
         case .popularity:
             return "Popularity"
         case .publishedAt:

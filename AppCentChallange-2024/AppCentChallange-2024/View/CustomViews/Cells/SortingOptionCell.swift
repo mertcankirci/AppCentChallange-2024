@@ -31,6 +31,8 @@ class SortingOptionCell: UITableViewCell {
     }
     
     func configure() {
+        self.backgroundColor = .secondarySystemBackground
+        
         optionLabel = ACBodyLabel(textAlignment: .left)
         optionLabel.textColor = .label
         

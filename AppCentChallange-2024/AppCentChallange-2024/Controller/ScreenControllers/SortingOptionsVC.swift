@@ -14,7 +14,6 @@ protocol SortingOptionsVCDelegate: AnyObject {
 class SortingOptionsVC: UIViewController {
     
     var sortingOptions: [SortingOptions] = SortingOptions.allCases
-    var closeButton: UIBarButtonItem!
     var titleLabel = ACTitleLabel(textAlignment: .left, fontSize: 22)
     let tableView = UITableView()
     let padding: CGFloat = 16
@@ -28,12 +27,7 @@ class SortingOptionsVC: UIViewController {
     }
     
     func configureViewController() {
-        view.backgroundColor = .systemBackground
-        navigationController?.isNavigationBarHidden = false
-        
-        closeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(closeButtonTapped))
-        closeButton.tintColor = .systemPink
-        navigationItem.rightBarButtonItem = closeButton
+        view.backgroundColor = .secondarySystemBackground
     }
     
     func configureTitleLabel() {
@@ -53,6 +47,7 @@ class SortingOptionsVC: UIViewController {
     func configureTableView() {
         view.addSubview(tableView)
         tableView.rowHeight = 40
+        tableView.backgroundColor = .secondarySystemBackground
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
         tableView.dataSource = self
