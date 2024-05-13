@@ -72,7 +72,7 @@ class PersistanceManager_Tests: XCTestCase {
         PersistanceManager.retrieveSaved { result in
             switch result {
             case .success(_):
-    //MARK: I'm not checking if success is empty because if the user hasn't saved anything before, articles will be empty.
+    //MARK: I'm not checking if articles are empty in the success case because if the user hasn't saved anything before, articles will be empty. The important thing is that no errors are thrown.
                 expectation.fulfill()
             case .failure(let error):
                 XCTFail("Error retrieving saved articles: \(error.localizedDescription)")

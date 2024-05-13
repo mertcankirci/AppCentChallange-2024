@@ -56,7 +56,7 @@ struct UIHelper {
     
     static func formatDate(for date: String) -> String {
         guard let formattedDate = date.convertToDate() else { return ""}
-        return formattedDate.convertToMonthYearDayFormat()
+        return formattedDate.formattedTimeDifference()
     }
     
     

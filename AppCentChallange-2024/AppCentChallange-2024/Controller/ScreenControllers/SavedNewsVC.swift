@@ -152,7 +152,7 @@ extension SavedNewsVC: NewsCellDelegate {
                     
                     showLottiePersistanceAnimation(for: .remove)
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.3) {
                         UIHelper.emptyStateViewHelper(in: self, articles: articles, screen: .saved) //Here waiting for unsave animation to finish.
                     }
                 } else {

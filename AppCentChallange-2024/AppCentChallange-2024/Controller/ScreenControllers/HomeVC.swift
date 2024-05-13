@@ -113,7 +113,7 @@ class HomeVC: UIViewController {
                         page -= 1
                         return
                     } else {
-                        presentACAlertOnMainThread(title: "No news", message: "Unforunately there we couldn't find any news for this keyword. 🥲", buttonTitle: "Ok")
+                        presentACAlertOnMainThread(title: "No news", message: "Unforunately we couldn't find any news for this keyword. 🥲", buttonTitle: "Ok")
                     }
                     updateTitles()
                 }

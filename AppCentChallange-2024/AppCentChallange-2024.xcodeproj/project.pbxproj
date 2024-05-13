@@ -12,7 +12,6 @@
 		543D15342BF269D5009C1426 /* SortingOptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 543D15332BF269D5009C1426 /* SortingOptionCell.swift */; };
 		544E11B42BF018EA00EA90F2 /* lottie-saved.json in Resources */ = {isa = PBXBuildFile; fileRef = 544E11B32BF018EA00EA90F2 /* lottie-saved.json */; };
 		544E11B62BF01E1A00EA90F2 /* lottie-unsaved.json in Resources */ = {isa = PBXBuildFile; fileRef = 544E11B52BF01E1A00EA90F2 /* lottie-unsaved.json */; };
-		544E11C42BF0401200EA90F2 /* AppCentChallange_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544E11C32BF0401200EA90F2 /* AppCentChallange_2024Tests.swift */; };
 		544E11CB2BF0413F00EA90F2 /* NetworkManager_Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 544E11CA2BF0413F00EA90F2 /* NetworkManager_Tests.swift */; };
 		54557F6F2BEFB76500AF8799 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 54557F6E2BEFB76500AF8799 /* Lottie */; settings = {ATTRIBUTES = (Required, ); }; };
 		54557F732BEFBA2900AF8799 /* ACLottieEmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54557F722BEFBA2900AF8799 /* ACLottieEmptyStateView.swift */; };
@@ -68,7 +67,6 @@
 		544E11B32BF018EA00EA90F2 /* lottie-saved.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-saved.json"; sourceTree = "<group>"; };
 		544E11B52BF01E1A00EA90F2 /* lottie-unsaved.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-unsaved.json"; sourceTree = "<group>"; };
 		544E11C12BF0401200EA90F2 /* AppCentChallange-2024Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "AppCentChallange-2024Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		544E11C32BF0401200EA90F2 /* AppCentChallange_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCentChallange_2024Tests.swift; sourceTree = "<group>"; };
 		544E11CA2BF0413F00EA90F2 /* NetworkManager_Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager_Tests.swift; sourceTree = "<group>"; };
 		54557F722BEFBA2900AF8799 /* ACLottieEmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACLottieEmptyStateView.swift; sourceTree = "<group>"; };
 		54557F742BEFC04E00AF8799 /* lottie-empty-home.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "lottie-empty-home.json"; sourceTree = "<group>"; };
@@ -138,7 +136,6 @@
 		544E11C22BF0401200EA90F2 /* AppCentChallange-2024Tests */ = {
 			isa = PBXGroup;
 			children = (
-				544E11C32BF0401200EA90F2 /* AppCentChallange_2024Tests.swift */,
 				544E11CA2BF0413F00EA90F2 /* NetworkManager_Tests.swift */,
 				543D152A2BF133F8009C1426 /* PersistanceManager_Tests.swift */,
 			);
@@ -451,7 +448,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				544E11CB2BF0413F00EA90F2 /* NetworkManager_Tests.swift in Sources */,
-				544E11C42BF0401200EA90F2 /* AppCentChallange_2024Tests.swift in Sources */,
 				543D152B2BF133F8009C1426 /* PersistanceManager_Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

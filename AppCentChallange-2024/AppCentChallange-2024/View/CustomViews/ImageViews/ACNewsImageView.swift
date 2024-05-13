@@ -28,7 +28,7 @@ class ACNewsImageView: UIImageView {
     }
     
     func downloadImage(from urlString: String) {
-        //MARK: Utilizing cache for faster downloads.
+    //MARK: Utilizing cache for faster downloads.
         let cacheKey = NSString(string: urlString)
         
         if let image = cache.object(forKey: cacheKey) {

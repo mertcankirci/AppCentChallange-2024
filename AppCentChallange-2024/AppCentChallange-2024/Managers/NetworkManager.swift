@@ -11,21 +11,16 @@ import Alamofire
 class NetworkManager {
     static let shared = NetworkManager()
     private let baseURL = "https://newsapi.org/v2/everything?q="
+    //MARK: I've also generated a second apiKey in case any issues arise.
     private let apiKey = "df0425863c604827a5f5ef4eef003db2"
     private let apiKey2 = "413e3cb8905240bfa14bc5de86c216ca"
-    var sortingOption: SortingOptions? = .publishedAt
+    var sortingOption: SortingOptions = .publishedAt
     let cache = NSCache<NSString, UIImage>()
     
     private init () { }
     
     func getNews(for query: String, page: Int, completed: @escaping(Result<NewsResponse, ACError>) -> Void) {
-        var endPoint: String = ""
-        
-        if let sortingOption = sortingOption {
-            endPoint = baseURL + "\(query)&page=\(page)&sortBy=\(sortingOption.rawValue)&apiKey=\(apiKey)"
-        } else {
-            endPoint = baseURL + "\(query)&page=\(page)&apiKey=\(apiKey)"
-        }
+        var endPoint = baseURL + "\(query)&page=\(page)&sortBy=\(sortingOption.rawValue)&apiKey=\(apiKey)"
         
         guard let url = URL(string: endPoint) else {
             completed(.failure(.invalidQuery))

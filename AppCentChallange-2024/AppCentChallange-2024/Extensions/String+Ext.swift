@@ -19,6 +19,6 @@ extension String {
     
     func convertToDisplayFormat() -> String {
         guard let date = self.convertToDate() else { return "Not Available" }
-        return date.convertToMonthYearDayFormat()
+        return date.formattedTimeDifference()
     }
 }
