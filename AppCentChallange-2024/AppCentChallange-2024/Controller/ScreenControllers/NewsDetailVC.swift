@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SafariServices
 
 protocol NewsDetailDissapearDelegate: AnyObject {
     func detailVcWillDissapear()
@@ -166,6 +167,19 @@ class NewsDetailVC: UIViewController {
         }
     }
     
+    private func presentSafariVC(with url: URL) {
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.title = "News Source"
+        safariVC.preferredControlTintColor = .systemPink
+        safariVC.delegate = self
+  
+        navigationController?.pushViewController(safariVC, animated: true)
+    }
+    
+    @objc func backButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @objc func shareButtonTapped() {
         let shareText = """
         Look at this article !
@@ -188,5 +202,11 @@ class NewsDetailVC: UIViewController {
             return
             }
         presentSafariVC(with: url)
+    }
+}
+
+extension NewsDetailVC: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        navigationController?.popViewController(animated: true)
     }
 }
