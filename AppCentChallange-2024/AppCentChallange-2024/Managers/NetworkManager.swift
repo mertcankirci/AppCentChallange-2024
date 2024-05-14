@@ -20,7 +20,7 @@ class NetworkManager {
     private init () { }
     
     func getNews(for query: String, page: Int, completed: @escaping(Result<NewsResponse, ACError>) -> Void) {
-        var endPoint = baseURL + "\(query)&page=\(page)&sortBy=\(sortingOption.rawValue)&apiKey=\(apiKey)"
+        let endPoint = baseURL + "\(query)&page=\(page)&sortBy=\(sortingOption.rawValue)&apiKey=\(apiKey)"
         
         guard let url = URL(string: endPoint) else {
             completed(.failure(.invalidQuery))
