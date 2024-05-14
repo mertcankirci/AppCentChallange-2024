@@ -54,7 +54,7 @@ In this project, `MVC` was chosen to ensure a clear separation of concerns and m
 
 ## Dependencies 
 
-In the Appcent News App, I utilized `Alamofire` and `Lottie` dependencies. While employing `Alamofire`, I incorporated a custom alert feature within the function where `Alamofire` is utilized to display user-defined alerts. Additionally, I employed a completion handler within this function. For `Lottie`, I integrated it for animations depicting save and unsave actions on screens. Although I'm aware of the option to use Kingfisher for image downloading, as this is a case study, I opted to demonstrate the usage of the `NSCache` structure for image downloads in a native manner.
+In the Appcent News App, I utilized `Alamofire` and `Lottie` dependencies. While employing `Alamofire`, I incorporated a custom alert feature within the function where `Alamofire` is utilized to display user-defined alerts. Additionally, I employed a completion handler within this function. For `Lottie`, I integrated it for animations depicting save and unsave actions on screens. Although I'm aware of the option to use `Kingfisher` for image downloading, as this is a case study, I opted to demonstrate the usage of the `NSCache` structure for image downloads in a native manner.
 
 Alamofire: 5.9.1
 Lottie: 4.43
