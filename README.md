@@ -52,7 +52,7 @@ On the Saved News page, you can view the news articles you have saved, navigate 
 ## Design Pattern
 In the iOS project developed using the `UIKit` framework, the `MVC (Model-View-Controller)` design pattern was utilized to enhance organization and separation of concerns. `MVC` is a foundational pattern in iOS development, providing clear divisions between data management, user interface, and application logic.
 
-In this project, `MVC` was chosen to ensure a clear separation of concerns and maintainability of the codebase. Each component plays a specific role, leading to a well-structured and easily maintainable codebase. Additionally, adherence to MVC promotes code reusability and facilitates testing of individual components.
+In this project, `MVC` was chosen to ensure a clear separation of concerns and maintainability of the codebase. Each component plays a specific role, leading to a well-structured and easily maintainable codebase. Additionally, adherence to `MVC` promotes code reusability and facilitates testing of individual components.
 
 ## Dependencies 
 
