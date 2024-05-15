@@ -44,11 +44,6 @@ On the Saved News page, you can view the news articles you have saved, navigate 
     <img src="/AppCentChallange-2024/AppCentChallange-2024/Screenshots/8-light.png" width="200px"</img>
 </div>
 
-## Requirements
-* iOS 15+ 
-* Alamofire: 5.9.1
-* Lottie: 4.43
-
 ## Design Pattern
 In the iOS project developed using the `UIKit` framework, the `MVC (Model-View-Controller)` design pattern was utilized to enhance organization and separation of concerns. `MVC` is a foundational pattern in iOS development, providing clear divisions between data management, user interface, and application logic.
 
@@ -57,6 +52,11 @@ In this project, `MVC` was chosen to ensure a clear separation of concerns and m
 ## Dependencies 
 
 In the Appcent News App, I utilized `Alamofire` and `Lottie` dependencies. While employing `Alamofire`, I incorporated a custom alert feature within the function where `Alamofire` is utilized to display user-defined alerts. Additionally, I employed a completion handler within this function. For `Lottie`, I integrated it for animations depicting save and unsave actions on screens. Although I'm aware of the option to use `Kingfisher` for image downloading, as this is a case study, I opted to demonstrate the usage of the `NSCache` structure for image downloads in a native manner.
+
+## Requirements
+* iOS 15+ 
+* Alamofire: 5.9.1
+* Lottie: 4.43
 
 ## Setup
 When you open the `xcworkspace` file in the project, XCode will automatically install the 3rd party dependencies due to swift package working principle. You don't need to make any manuel operation for the installation step. Then, when XCode finishes the installation of dependencies, you can only run the project and you're ready.
