@@ -6,9 +6,9 @@ Appcent iOS case study app.
 ## Table of Contents
 * [General Info](#general-info)
 * [Screenshots](#screenshots)
-* [Requirements](#requirements)
 * [Design Pattern](#design-pattern)
 * [Dependencies](#dependencies)
+* [Requirements](#requirements)
 * [Setup](#setup)
 
 * ## General Info
